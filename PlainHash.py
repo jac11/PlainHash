@@ -76,7 +76,7 @@ class Hash_Creck :
                      time.sleep(2)
                      print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START'+W,'\n',(B+'-'*20+W),'\n')
                      time.sleep(2)
-                     print(B+'[*]'+W+Y+'Orgenal Hash    : '+W,O+self.input_value+W )
+                     print(B+'[*]'+W+Y+'Original Hash    : '+W,O+self.input_value+W )
                      if self.args.hash or self.args.read :
                         self.path = os.path.abspath(self.args.wordlist)
                         self.list = open(self.path,'r',encoding = "ISO-8859-1")             
@@ -114,7 +114,7 @@ class Hash_Creck :
                      print(B+'[*]'+W+R+'Hash  ID  : SHA1   |', ' [*] len  :'+W,R+str(len(self.SHA_1))+W,'\n')
                      print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START','\n',(B+'-'*20+W),'\n')
                      time.sleep(2)
-                     print(B+'[*]'+W+Y+'Orgenal Hash    : '+W,O+self.input_value+W )
+                     print(B+'[*]'+W+Y+'Original Hash    : '+W,O+self.input_value+W )
                      if self.args.hash or self.args.read:
                         self.path = os.path.abspath(self.args.wordlist)
                         self.list = open(self.path,'r',encoding = "ISO-8859-1")             
@@ -150,7 +150,7 @@ class Hash_Creck :
                      print(B+'[*]'+W+R+'Hash  ID  : SHA3_384    |', ' [*] len  :'+W,R+str(len(self.SHA3_384))+W,'\n')
                      print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START','\n',(B+'-'*20+W),'\n')
                      time.sleep(2)
-                     print(B+'[*]'+W+Y+'Orgenal Hash       : '+W,O+self.input_value[:50],'\n','                     : ', self.input_value[51:] +W)
+                     print(B+'[*]'+W+Y+'Original Hash       : '+W,O+self.input_value[:50],'\n','                     : ', self.input_value[51:] +W)
                      print()
                      if self.args.hash or self.args.read:
                         self.path = os.path.abspath(self.args.wordlist)
@@ -198,7 +198,7 @@ class Hash_Creck :
                      print (B+'[*]'+W+B+'Hash  ID  : BLAKE2S  |' ,' [*] len  :'+W+B+str(len(self.BLAKE2c ))+W) 
                      print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START','\n',(B+'-'*20+W),'\n')
                      time.sleep(2)
-                     print(B+'[*]'+W+B+'Orgenal Hash       : '+W,O+self.input_value+W ) 
+                     print(B+'[*]'+W+B+'Original Hash       : '+W,O+self.input_value+W ) 
                      if self.args.hash or self.args.read:
                         self.path = os.path.abspath(self.args.wordlist)
                         self.list = open(self.path,'r',encoding = "ISO-8859-1")             
@@ -261,7 +261,7 @@ class Hash_Creck :
                      print (B+'[*]'+W+B+'Hash  ID  : SHA512      |' ,' [*] len  :',str(len(self.SHA_512 ))+W)
                      print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START','\n',(B+'-'*20+W),'\n')
                      time.sleep(2)
-                     print(B+'[*]'+W+B+'Orgenal Hash       : '+W,O+self.input_value[0:63],'\n','                     : ', self.input_value[64:128] +W)
+                     print(B+'[*]'+W+B+'Original Hash       : '+W,O+self.input_value[0:63],'\n','                     : ', self.input_value[64:128] +W)
                      print()
                      if self.args.hash or self.args.read:
                         self.path = os.path.abspath(self.args.wordlist)
@@ -346,7 +346,7 @@ class Hash_Creck :
                      print (B+'[*]'+W+Y+'Hash  ID  : SHA224    |',' [*] len  :'+W,Y+str(len(self.SHA_224))+W,'\n') 
                      print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START'+W,'\n',(B+'-'*20+W),'\n')
                      time.sleep(2)
-                     print(B+'[*]'+W+B+'Orgenal Hash       : '+W,O+self.input_value+W )  
+                     print(B+'[*]'+W+B+'Original Hash       : '+W,O+self.input_value+W )  
                      if self.args.hash or self.args.read:
                         self.path = os.path.abspath(self.args.wordlist)
                         self.list = open(self.path,'r',encoding = "ISO-8859-1")             
