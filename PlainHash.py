@@ -58,14 +58,14 @@ class Plain_Hash :
                 try:
                    self.path= os.path.abspath(self.args.read)
                    self.list= open(self.path)             
-                   self.line_read =self.list.readline().rstrip() 
+                   self.line_read =self.list.readline().rstrip().lower() 
                    self.input_value = self.line_read
                    self.hash_id()
                 except FileNotFoundError :
                     print(Y+'[*] Hash File','{}'.format(self.path),W+B+' Not Found'+W) 
                     exit()  
             elif self.args.hash:
-                self.input_value = sys.argv[2] 
+                self.input_value = sys.argv[2].lower()
                 self.hash_id()
      def hash_id(self)  :
          
