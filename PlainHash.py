@@ -16,7 +16,7 @@ P= '\033[35m'
 Y="\033[1;33m" 
   
 
-class Hash_Creck :
+class Plain_Hash :
 
      
      def __init__(self):
@@ -55,11 +55,15 @@ class Hash_Creck :
          self.input_hash()
      def input_hash(self):
             if self.args.read:
-                self.path= os.path.abspath(self.args.read)
-                self.list= open(self.path)             
-                self.line_read =self.list.readline().rstrip() 
-                self.input_value = self.line_read
-                self.hash_id()
+                try:
+                   self.path= os.path.abspath(self.args.read)
+                   self.list= open(self.path)             
+                   self.line_read =self.list.readline().rstrip() 
+                   self.input_value = self.line_read
+                   self.hash_id()
+                except FileNotFoundError :
+                    print(Y+'[*] Hash File','{}'.format(self.path),W+B+' Not Found'+W) 
+                    exit()  
             elif self.args.hash:
                 self.input_value = sys.argv[2] 
                 self.hash_id()
@@ -69,14 +73,14 @@ class Hash_Creck :
                 if len(self.input_value) == len(self.md5_hash) :
                      time.sleep(1)
                      print()  
-                     print(B+'[*]'+W,R+'IDENTYFIR HASH'+W)
+                     print(B+'[*]'+W,R+'Hash-Identifier'+W)
                      print(Y+"*"*20+W,'\n')
                      time.sleep(1)
                      print(B+'[*]'+W+R+'Hash  ID  : MD5   |', ' [*] len  :'+W,R+str(len(self.md5_hash))+W,'\n')
                      time.sleep(2)
-                     print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START'+W,'\n',(B+'-'*20+W),'\n')
+                     print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                      time.sleep(2)
-                     print(B+'[*]'+W+Y+'Original Hash    : '+W,O+self.input_value+W )
+                     print(B+'[*]'+W+Y+'Original Hash   : '+W,O+self.input_value+W )
                      if self.args.hash or self.args.read :
                         self.path = os.path.abspath(self.args.wordlist)
                         self.list = open(self.path,'r',encoding = "ISO-8859-1")             
@@ -106,288 +110,286 @@ class Hash_Creck :
                         print ('[*]PLease Try another WordList','\n',('*'*30)+W) 
                         exit()                            
                 elif len(self.input_value) == len(self.SHA_1) :
-                     time.sleep(1)  
-                     print()  
-                     print(B+'[*]'+W,R+'IDENTYFIR HASH'+W)
-                     print(Y+"*"*20+W,'\n')
-                     time.sleep(1)
-                     print(B+'[*]'+W+R+'Hash  ID  : SHA1   |', ' [*] len  :'+W,R+str(len(self.SHA_1))+W,'\n')
-                     print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START','\n',(B+'-'*20+W),'\n')
-                     time.sleep(2)
-                     print(B+'[*]'+W+Y+'Original Hash    : '+W,O+self.input_value+W )
-                     if self.args.hash or self.args.read:
-                        self.path = os.path.abspath(self.args.wordlist)
-                        self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                        self.line = self.list.read()            
-                        passwords = self.line.split()
-                        count = 0
-                        for secrit in passwords :
-                            hash_password = hashlib.sha1(secrit.encode()).hexdigest()
-                            if hash_password == self.input_value : 
-                               print(B+'[*]'+W+Y+'Same Hash Match : '+W,B+hash_password+W)
-                               print (B+'[*]'+W+R+'Password Found  : '+W,P+secrit+W)
-                               print(B+'[*]'+W+Y+'Password Count  : '+W,R+str(count)+W)                                                                
-                               break
-                            print(B+'[*]'+W+R+'Try Password    : '+W,R+secrit+W);print(B+'[*]'+W+R+'Try Hash        : '+W,B+hash_password+W)\
-                            ;print(B+'[*]'+W+B+'Password Count  : '+W,R+str(count)+W)
-                            time.sleep(0.15)                           
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                     
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')
-                            count +=1  
+                        time.sleep(1)  
+                        print()  
+                        print(B+'[*]'+W,R+'Hash-Identifier'+W)
+                        print(Y+"*"*20+W,'\n')
+                        time.sleep(1)
+                        print(B+'[*]'+W+R+'Hash  ID  : SHA1   |', ' [*] len  :'+W,R+str(len(self.SHA_1))+W,'\n')
+                        print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start','\n',(B+'-'*20+W),'\n')
+                        time.sleep(2)
+                        print(B+'[*]'+W+Y+'Original Hash   : '+W,O+self.input_value+W )
+                        if self.args.hash or self.args.read:
+                           self.path = os.path.abspath(self.args.wordlist)
+                           self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                           self.line = self.list.read()            
+                           passwords = self.line.split()
+                           count = 0
+                           for secrit in passwords :
+                               hash_password = hashlib.sha1(secrit.encode()).hexdigest()
+                               if hash_password == self.input_value : 
+                                  print(B+'[*]'+W+Y+'Same Hash Match : '+W,B+hash_password+W)
+                                  print (B+'[*]'+W+R+'Password Found  : '+W,P+secrit+W)
+                                  print(B+'[*]'+W+Y+'Password Count  : '+W,R+str(count)+W)                                                                
+                                  break
+                               print(B+'[*]'+W+R+'Try Password    : '+W,R+secrit+W);print(B+'[*]'+W+R+'Try Hash        : '+W,B+hash_password+W)\
+                               ;print(B+'[*]'+W+B+'Password Count  : '+W,R+str(count)+W)
+                               time.sleep(0.15)                           
+                               sys.stdout.write('\x1b[1A')
+                               sys.stdout.write('\x1b[2K')                                                     
+                               sys.stdout.write('\x1b[1A')
+                               sys.stdout.write('\x1b[2K')
+                               sys.stdout.write('\x1b[1A')
+                               sys.stdout.write('\x1b[2K')
+                               count +=1  
                     
-                     print (B+'\n[*]Password Not Found','\n')
-                     print ('[*]PLease Try another WordList','\n',('*'*30)+W) 
-                     exit()                           
+                           print (B+'\n[*]Password Not Found','\n')
+                           print ('[*]PLease Try another WordList','\n',('*'*30)+W) 
+                           exit()                           
                 elif len(self.input_value) == len(self.SHA3_384 ) :
-                     print()  
-                     print(B+'[*]'+W+R+'IDENTYFIR HASH'+W)
-                     print(Y+"*"*20+W,'\n')
-                     time.sleep(1)
-                     print(B+'[*]'+W+R+'Hash  ID  : SHA3_384    |', ' [*] len  :'+W,R+str(len(self.SHA3_384))+W,'\n')
-                     print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START','\n',(B+'-'*20+W),'\n')
-                     time.sleep(2)
-                     print(B+'[*]'+W+Y+'Original Hash       : '+W,O+self.input_value[:50],'\n','                     : ', self.input_value[51:] +W)
-                     print()
-                     if self.args.hash or self.args.read:
-                        self.path = os.path.abspath(self.args.wordlist)
-                        self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                        self.line = self.list.read()            
-                        passwords = self.line.split()
-                        count = 0  
-                        for secrit in passwords :
-                            hash_password = hashlib.sha3_384(secrit.encode()).hexdigest()
-                            if hash_password == self.input_value : 
-                               print(B+'[*]'+W+Y+'Same Hash Match    : '+W,B+hash_password[:50])\
-                               ;print('                      : ',hash_password[51:]+W)
-                               print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W)
-                               print(B+'[*]'+W+Y+'Password Count     : '+W,R+str(count)+W)                                                          
-                               break
-                            print(B+'[*]'+W+R+'Try Password       : '+W,R+secrit+W);print(); print(B+'[*]'+W+R+'Try Hash           : '+W,\
-                            B+hash_password[:50]);print('                      : ',hash_password[51:]+W)\
-                            ;print(B+'[*]'+W+R+'Password Count     : '+W,Y+str(count)+W)
-                            time.sleep(0.15)                           
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                                                  
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                    
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K') 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')
-                            count +=1                         
-                        print (B+'\n[*]Password Not Found','\n')
-                        print ('[*]PLease Try another WordList','\n',('*'*30)+W)
-                        exit()                                   
+                           print()  
+                           print(B+'[*]'+W+R+'Hash-Identifier'+W)
+                           print(Y+"*"*20+W,'\n')
+                           time.sleep(1)
+                           print(B+'[*]'+W+R+'Hash  ID  : SHA3_384    |', ' [*] len  :'+W,R+str(len(self.SHA3_384))+W,'\n')
+                           print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start','\n',(B+'-'*20+W),'\n')
+                           time.sleep(2)
+                           print(B+'[*]'+W+Y+'Original Hash      : '+W,O+self.input_value[:50],'\n','                     : ', self.input_value[51:] +W)
+                           print()
+                           if self.args.hash or self.args.read:
+                             self.path = os.path.abspath(self.args.wordlist)
+                             self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                             self.line = self.list.read()            
+                             passwords = self.line.split()
+                             count = 0  
+                             for secrit in passwords :
+                                 hash_password = hashlib.sha3_384(secrit.encode()).hexdigest()
+                                 if hash_password == self.input_value : 
+                                    print(B+'[*]'+W+Y+'Same Hash Match    : '+W,B+hash_password[:50])\
+                                    ;print('                      : ',hash_password[51:]+W)
+                                    print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W)
+                                    print(B+'[*]'+W+Y+'Password Count     : '+W,R+str(count)+W)                                                          
+                                    break
+                                 print(B+'[*]'+W+R+'Try Password       : '+W,R+secrit+W);print(); print(B+'[*]'+W+R+'Try Hash           : '+W,\
+                                 B+hash_password[:50]);print('                      : ',hash_password[51:]+W)\
+                                 ;print(B+'[*]'+W+R+'Password Count     : '+W,Y+str(count)+W)
+                                 time.sleep(0.15)                           
+                                 sys.stdout.write('\x1b[1A')
+                                 sys.stdout.write('\x1b[2K')                                                                                  
+                                 sys.stdout.write('\x1b[1A')
+                                 sys.stdout.write('\x1b[2K')                                                    
+                                 sys.stdout.write('\x1b[1A')
+                                 sys.stdout.write('\x1b[2K') 
+                                 sys.stdout.write('\x1b[1A')
+                                 sys.stdout.write('\x1b[2K')
+                                 sys.stdout.write('\x1b[1A')
+                                 sys.stdout.write('\x1b[2K')
+                                 count +=1                         
+                             print (B+'\n[*]Password Not Found','\n')
+                             print ('[*]PLease Try another WordList','\n',('*'*30)+W)
+                             exit()                                   
                 elif len(self.input_value)== len(self.SHA_256) and len(self.input_value)== len(self.SHA_3_256 ) \
                 and len(self.input_value)== len(self.BLAKE2c):
-                     time.sleep(1)  
-                     print()  
-                     print(B+'[*]'+W,R+'IDENTYFIR HASH'+W)
-                     print(Y+"*"*20+W,'\n')
-                     time.sleep(1)
-                     print (B+'[*]'+W+R+'Hash  ID  : SHA256   |', ' [*] len  :'+W+R+str(len(self.SHA_256))+W)
-                     time.sleep(1)
-                     print (B+'[*]'+W+Y+'Hash  ID  : SHA3_256 |',' [*] len  :'+W+Y+str(len(self.SHA_3_256))+W)
-                     time.sleep(1)
-                     print (B+'[*]'+W+B+'Hash  ID  : BLAKE2S  |' ,' [*] len  :'+W+B+str(len(self.BLAKE2c ))+W) 
-                     print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START','\n',(B+'-'*20+W),'\n')
-                     time.sleep(2)
-                     print(B+'[*]'+W+B+'Original Hash       : '+W,O+self.input_value+W ) 
-                     if self.args.hash or self.args.read:
-                        self.path = os.path.abspath(self.args.wordlist)
-                        self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                        self.line = self.list.read()            
-                        passwords = self.line.split()
-                        count = 0  
-                        for secrit in passwords :
-                            hash_password  = hashlib.sha256(secrit.encode()).hexdigest()
-                            hash_password1 = hashlib.sha3_256(secrit.encode()).hexdigest()
-                            hash_password2 = hashlib.blake2s(secrit.encode()).hexdigest()
-                            if hash_password == self.input_value :
-                                print(B+'[*]'+W+R+'Same Hash Match    : ',hash_password+W)  
-                                print (B+'[*]'+W+B+'Hash ID            :'+W+R+'  sha256 '+W) 
-                                print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
-                                print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
-                                break                              
-                            elif hash_password1 ==self.input_value :
-                                print(B+'[*]'+W+Y+'Same Hash Match    : '+W,Y+hash_password1+W)  
-                                print (B+'[*]'+W+B+'Hash ID            :'+W+R+'  SHA3_256 '+W) 
-                                print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
-                                print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)                              
-                                break     
-                            elif hash_password2 ==self.input_value:
-                                print(B+'[*]'+W+B+'Same Hash Match    : ',hash_password2+W)  
-                                print (B+'[*]'+W+Y+'Hash ID            :'+W+Y+'  BLAKE2S '+W) 
-                                print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
-                                print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
-                                break     
+                            time.sleep(1)  
+                            print()  
+                            print(B+'[*]'+W,R+'Hash-Identifier'+W)
+                            print(Y+"*"*20+W,'\n')
+                            time.sleep(1)
+                            print (B+'[*]'+W+R+'Hash  ID  : SHA256   |', ' [*] len  :'+W+R+str(len(self.SHA_256))+W)
+                            time.sleep(1)
+                            print (B+'[*]'+W+Y+'Hash  ID  : SHA3_256 |',' [*] len  :'+W+Y+str(len(self.SHA_3_256))+W)
+                            time.sleep(1)
+                            print (B+'[*]'+W+B+'Hash  ID  : BLAKE2S  |' ,' [*] len  :'+W+B+str(len(self.BLAKE2c ))+W) 
+                            print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start','\n',(B+'-'*20+W),'\n')
+                            time.sleep(2)
+                            print(B+'[*]'+W+B+'Original Hash      : '+W,O+self.input_value+W ) 
+                            if self.args.hash or self.args.read:
+                               self.path = os.path.abspath(self.args.wordlist)
+                               self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                               self.line = self.list.read()            
+                               passwords = self.line.split()
+                               count = 0  
+                               for secrit in passwords :
+                                  hash_password  = hashlib.sha256(secrit.encode()).hexdigest()
+                                  hash_password1 = hashlib.sha3_256(secrit.encode()).hexdigest()
+                                  hash_password2 = hashlib.blake2s(secrit.encode()).hexdigest()
+                                  if hash_password == self.input_value :
+                                     print(B+'[*]'+W+R+'Same Hash Match    : ',hash_password+W)  
+                                     print (B+'[*]'+W+B+'Hash ID            :'+W+R+'  sha256 '+W) 
+                                     print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
+                                     print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
+                                     break                              
+                                  elif hash_password1 ==self.input_value :
+                                       print(B+'[*]'+W+Y+'Same Hash Match    : '+W,Y+hash_password1+W)  
+                                       print (B+'[*]'+W+B+'Hash ID            :'+W+R+'  SHA3_256 '+W) 
+                                       print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
+                                       print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)                              
+                                       break     
+                                  elif hash_password2 ==self.input_value:
+                                       print(B+'[*]'+W+B+'Same Hash Match    : ',hash_password2+W)  
+                                       print (B+'[*]'+W+Y+'Hash ID            :'+W+Y+'  BLAKE2S '+W) 
+                                       print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
+                                       print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
+                                       break     
                                                                                           
-                            print(B+'[*]'+W+B+'Try Password       : '+W,P+secrit+W);print(B+'[*]'+W+R+'Try Hash sha256    : '+W,R+hash_password+W)\
-                            ;print(B+'[*]'+W+Y+'Try Hash sha3_256  : '+W,Y+hash_password1+W)\
-                            ;print(B+'[*]'+W+B+'Try Hash blake2s   : '+W,B+hash_password2+W);print(B+'[*]'+W+R+'Password Count     : '+W,P+str(count)+W)
-                            time.sleep(0.15)                           
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                                                   
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                                                                           
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K') 
-                            count +=1         
+                                  print(B+'[*]'+W+B+'Try Password       : '+W,P+secrit+W);print(B+'[*]'+W+R+'Try Hash sha256    : '+W,R+hash_password+W)\
+                                  ;print(B+'[*]'+W+Y+'Try Hash sha3_256  : '+W,Y+hash_password1+W)\
+                                  ;print(B+'[*]'+W+B+'Try Hash blake2s   : '+W,B+hash_password2+W);print(B+'[*]'+W+R+'Password Count     : '+W,P+str(count)+W)
+                                  time.sleep(0.15)                           
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K')                                                                                   
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K')                                                 
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K')                                                 
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K')                                                                                                           
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K') 
+                                  count +=1         
                         
-                        print (B+'\n[*]Password Not Found','\n')
-                        print ('[*]PLease Try another WordList','\n',('*'*30)+W)
-                        exit()                                       
+                               print (B+'\n[*]Password Not Found','\n')
+                               print ('[*]PLease Try another WordList','\n',('*'*30)+W)
+                               exit()                                       
                 elif len(self.input_value)	== len(self.SHA_3_512) and len(self.input_value)==len(self.BLAKE2b)\
                 and len(self.input_value)== len (self.SHA_512):
-                     time.sleep(1)  
-                     print()  
-                     print(B+'[*]'+W,R+'IDENTYFIR HASH'+W)
-                     print(Y+"*"*20+W,'\n')
-                     time.sleep(1)
-                     print (B+'[*]'+W+R+'Hash  ID  : SHA3_512    |', ' [*] len  :',str(len(self.SHA_3_512))+W)
-                     time.sleep(1)
-                     print (B+'[*]'+W+Y+'Hash  ID  : BLAKE2b     |',' [*] len  :',str(len(self.BLAKE2b))+W)
-                     time.sleep(1)
-                     print (B+'[*]'+W+B+'Hash  ID  : SHA512      |' ,' [*] len  :',str(len(self.SHA_512 ))+W)
-                     print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START','\n',(B+'-'*20+W),'\n')
-                     time.sleep(2)
-                     print(B+'[*]'+W+B+'Original Hash       : '+W,O+self.input_value[0:63],'\n','                     : ', self.input_value[64:128] +W)
-                     print()
-                     if self.args.hash or self.args.read:
-                        self.path = os.path.abspath(self.args.wordlist)
-                        self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                        self.line = self.list.read()            
-                        passwords = self.line.split()                        
-                        count = 0  
-                        for secrit in passwords :
-                            hash_password  = hashlib.sha3_512(secrit.encode()).hexdigest()
-                            hash_password1 = hashlib.blake2b(secrit.encode()).hexdigest()
-                            hash_password2 = hashlib.sha512(secrit.encode()).hexdigest()
-                            if hash_password == self.input_value :
-                                print(B+'[*]'+W+R+'Same Hash Match    : '+W,R+hash_password[:63])\
-                                ;print('                      : ',hash_password[64:]+W,'\n')  
-                                print (B+'[*]'+W+Y+'Hash ID            :  SHA3_512 '+W) 
-                                print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
-                                print(B+'[*]'+W+Y+'Password Count     : '+W,P+str(count)+W)
-                                break                              
-                            elif hash_password1 ==self.input_value :
-                                print(B+'[*]'+W+Y+'Same Hash Match    : ',hash_password1[:63])\
-                                ;print('                      : ',hash_password1[64:]+W ,'\n') 
-                                print (B+'[*]'+W+B+'Hash ID            :  BLAKE2b '+W) 
-                                print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
-                                print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
-                                break     
-                            elif hash_password2 ==self.input_value:
-                                print(B+'[*]'+W+B+'Same Hash Match    : ',hash_password2[:63])\
-                                ;print('                      : ',hash_password2[64:]+W,'\n')
-                                print (B+'[*]'+W+Y+'Hash ID            :  SHA512  '+W) 
-                                print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
-                                print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
-                                break     
-                                        
-                            print(B+'[*]'+W+B+'Try Password       : '+W,P+secrit+W);print(); print(B+'[*]'+W+R+'Try Hash sha3_512  : ',\
-                            hash_password[:63]);print('                      : ',hash_password[64:]+W)\
-                            ;print()\
-                            ;print(B+'[*]'+W+Y+'Try Hash blake2b   : ',hash_password1[:63])\
-                            ;print('                      : ',hash_password1[64:]+W)\
-                            ;print()\
-                            ;print(B+'[*]'+W+B+'Try Hash sha512    : ',hash_password2[:63])\
-                            ;print('                      : ',hash_password2[64:]+W)\
-                            ;print()\
-                            ;print(B+'[*]'+W+R+'Password Count     : ',P+str(count)+W)
-                            time.sleep(0.15)                           
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                                                   
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                                                                           
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K') 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')   
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K') 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K') 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K') 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K') 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')   
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')   
-                            count +=1 
+                              time.sleep(1)  
+                              print()  
+                              print(B+'[*]'+W,R+'Hash-Identifier'+W)
+                              print(Y+"*"*20+W,'\n')
+                              time.sleep(1)
+                              print (B+'[*]'+W+R+'Hash  ID  : SHA3_512    |', ' [*] len  :',str(len(self.SHA_3_512))+W)
+                              time.sleep(1)
+                              print (B+'[*]'+W+Y+'Hash  ID  : BLAKE2b     |',' [*] len  :',str(len(self.BLAKE2b))+W)
+                              time.sleep(1)
+                              print (B+'[*]'+W+B+'Hash  ID  : SHA512      |' ,' [*] len  :',str(len(self.SHA_512 ))+W)
+                              print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start','\n',(B+'-'*20+W),'\n')
+                              time.sleep(2)
+                              print(B+'[*]'+W+B+'Original Hash      : '+W,O+self.input_value[0:63],'\n','                     : ', self.input_value[64:128] +W)
+                              print()
+                              if self.args.hash or self.args.read:
+                                 self.path = os.path.abspath(self.args.wordlist)
+                                 self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                                 self.line = self.list.read()            
+                                 passwords = self.line.split()                        
+                                 count = 0  
+                                 for secrit in passwords :
+                                     hash_password  = hashlib.sha3_512(secrit.encode()).hexdigest()
+                                     hash_password1 = hashlib.blake2b(secrit.encode()).hexdigest()
+                                     hash_password2 = hashlib.sha512(secrit.encode()).hexdigest()
+                                     if hash_password == self.input_value :
+                                          print(B+'[*]'+W+R+'Same Hash Match    : '+W,R+hash_password[:63])\
+                                          ;print('                      : ',hash_password[64:]+W,'\n')  
+                                          print (B+'[*]'+W+Y+'Hash ID            :  SHA3_512 '+W) 
+                                          print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
+                                          print(B+'[*]'+W+Y+'Password Count     : '+W,P+str(count)+W)
+                                          break                              
+                                     elif hash_password1 ==self.input_value :
+                                          print(B+'[*]'+W+Y+'Same Hash Match    : ',hash_password1[:63])\
+                                          ;print('                      : ',hash_password1[64:]+W ,'\n') 
+                                          print (B+'[*]'+W+B+'Hash ID            :  BLAKE2b '+W) 
+                                          print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
+                                          print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
+                                          break     
+                                     elif hash_password2 ==self.input_value:
+                                          print(B+'[*]'+W+B+'Same Hash Match    : ',hash_password2[:63])\
+                                          ;print('                      : ',hash_password2[64:]+W,'\n')
+                                          print (B+'[*]'+W+Y+'Hash ID            :  SHA512  '+W) 
+                                          print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
+                                          print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
+                                          break                                             
+                                     print(B+'[*]'+W+B+'Try Password       : '+W,P+secrit+W);print(); print(B+'[*]'+W+R+'Try Hash sha3_512  : ',\
+                                     hash_password[:63]);print('                      : ',hash_password[64:]+W)\
+                                     ;print()\
+                                     ;print(B+'[*]'+W+Y+'Try Hash blake2b   : ',hash_password1[:63])\
+                                     ;print('                      : ',hash_password1[64:]+W)\
+                                     ;print()\
+                                     ;print(B+'[*]'+W+B+'Try Hash sha512    : ',hash_password2[:63])\
+                                     ;print('                      : ',hash_password2[64:]+W)\
+                                     ;print()\
+                                     ;print(B+'[*]'+W+R+'Password Count     : ',P+str(count)+W)
+                                     time.sleep(0.15)                           
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K')                                                                                   
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K')                                                 
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K')                                                 
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K')                                                                                                           
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K') 
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K')   
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K') 
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K') 
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K') 
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K') 
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K')   
+                                     sys.stdout.write('\x1b[1A')
+                                     sys.stdout.write('\x1b[2K')   
+                                     count +=1 
                         
-                        print (B+'\n[*]Password Not Found','\n')
-                        print ('[*]PLease Try another WordList','\n',('*'*30)+W) 
-                        exit()                                         
-                elif len(self.input_value)	== len(self.SHA3_224) and len(self.input_value)==len(self.SHA_224):             	
-                     time.sleep(1)  
-                     print()  
-                     print(B+'[*]'+W,R+'IDENTYFIR HASH'+W)
-                     print(Y+"*"*20+W,'\n')
-                     time.sleep(1)
-                     print (B+'[*]'+W+R+'Hash  ID  : SHA3_224  |', ' [*] len  :',str(len(self.SHA3_224))+W)
-                     time.sleep(1)
-                     print (B+'[*]'+W+Y+'Hash  ID  : SHA224    |',' [*] len  :'+W,Y+str(len(self.SHA_224))+W,'\n') 
-                     print((B+'*'*30+W),'\n',B+'[*]'+W+R+'HASH CRACK START'+W,'\n',(B+'-'*20+W),'\n')
-                     time.sleep(2)
-                     print(B+'[*]'+W+B+'Original Hash       : '+W,O+self.input_value+W )  
-                     if self.args.hash or self.args.read:
-                        self.path = os.path.abspath(self.args.wordlist)
-                        self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                        self.line = self.list.read()            
-                        passwords = self.line.split()
-                        count = 0  
-                        for secrit in passwords :
-                            hash_password = hashlib.sha3_224(secrit.encode()).hexdigest()
-                            hash_password1 = hashlib.sha224(secrit.encode()).hexdigest()
-                            if hash_password == self.input_value :
-                                print(B+'[*]'+W+R+'Same Hash Match    : ',hash_password+W)  
-                                print (B+'[*]'+W+B+'Hash ID            :  SHA3_224 '+W) 
-                                print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
-                                print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
-                                break                              
-                            elif hash_password1 ==self.input_value :
-                                print(B+'[*]'+W+Y+'Same Hash Match    : ',hash_password1+W)  
-                                print (B+'[*]'+W+B+'Hash ID            :  SHA224  '+W) 
-                                print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
-                                print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
-                                break     
+                                 print (B+'\n[*]Password Not Found','\n')
+                                 print ('[*]PLease Try another WordList','\n',('*'*30)+W) 
+                                 exit()                                         
+                elif len(self.input_value)== len(self.SHA3_224) and len(self.input_value)==len(self.SHA_224):             	
+                                time.sleep(1)  
+                                print()  
+                                print(B+'[*]'+W,R+'Hash-Identifier'+W)
+                                print(Y+"*"*20+W,'\n')
+                                time.sleep(1)
+                                print (B+'[*]'+W+R+'Hash  ID  : SHA3_224  |', ' [*] len  :',str(len(self.SHA3_224))+W)
+                                time.sleep(1)
+                                print (B+'[*]'+W+Y+'Hash  ID  : SHA224    |',' [*] len  :'+W,Y+str(len(self.SHA_224))+W,'\n') 
+                                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
+                                time.sleep(2)
+                                print(B+'[*]'+W+B+'Original Hash      : '+W,O+self.input_value+W )  
+                                if self.args.hash or self.args.read:
+                                  self.path = os.path.abspath(self.args.wordlist)
+                                  self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                                  self.line = self.list.read()            
+                                  passwords = self.line.split()
+                                  count = 0  
+                                  for secrit in passwords :
+                                      hash_password = hashlib.sha3_224(secrit.encode()).hexdigest()
+                                      hash_password1 = hashlib.sha224(secrit.encode()).hexdigest()
+                                      if hash_password == self.input_value :
+                                             print(B+'[*]'+W+R+'Same Hash Match    : ',hash_password+W)  
+                                             print (B+'[*]'+W+B+'Hash ID            :  SHA3_224 '+W) 
+                                             print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
+                                             print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
+                                             break                              
+                                      elif hash_password1 ==self.input_value :
+                                             print(B+'[*]'+W+Y+'Same Hash Match    : ',hash_password1+W)  
+                                             print (B+'[*]'+W+B+'Hash ID            :  SHA224  '+W) 
+                                             print (B+'[*]'+W+R+'Password Found     : '+W,P+secrit+W) 
+                                             print(B+'[*]'+W+B+'Password Count     : '+W,P+str(count)+W)
+                                             break     
 
-                            print(B+'[*]'+W+B+'Try Password       : '+W,P+secrit); print(B+'[*]'+W+R+'Try Hash sha3_224  : ',hash_password+W)\
-                            ;print(B+'[*]'+W+Y+'Try Hash sha224    : ',hash_password1+W);print(B+'[*]'+W+R+'Password Count     : '+W,P+str(count)+W)
-                            time.sleep(0.15)                           
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                                                   
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                 
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')                                                                                                           
-                            count +=1                   	
-                        
-                        print (B+'\n[*]Password Not Found','\n')
-                        print ('[*]PLease Try another WordList','\n',('*'*30)+W) 
-                        exit()                                    
+                                      print(B+'[*]'+W+B+'Try Password       : '+W,P+secrit); print(B+'[*]'+W+R+'Try Hash sha3_224  : ',hash_password+W)\
+                                      ;print(B+'[*]'+W+Y+'Try Hash sha224    : ',hash_password1+W);print(B+'[*]'+W+R+'Password Count     : '+W,P+str(count)+W)
+                                      time.sleep(0.15)                           
+                                      sys.stdout.write('\x1b[1A')
+                                      sys.stdout.write('\x1b[2K')                                                                                   
+                                      sys.stdout.write('\x1b[1A')
+                                      sys.stdout.write('\x1b[2K')                                                 
+                                      sys.stdout.write('\x1b[1A')
+                                      sys.stdout.write('\x1b[2K')                                                 
+                                      sys.stdout.write('\x1b[1A')
+                                      sys.stdout.write('\x1b[2K')                                                                                                           
+                                      count +=1                   	
+                                  print (B+'\n[*]Password Not Found','\n')
+                                  print ('[*]PLease Try another WordList','\n',('*'*30)+W) 
+                                  exit()                                    
                 else:
                     time.sleep(1)  
-                    print(Y+'\n[*] IDENTYFIR HASH\n',("*"*20),'\n')
+                    print(Y+'\n[*] Hash-Identifier\n',("*"*20),'\n')
                     print(P+'[*] Input Hash Not In Our Database '+W+'\n')
                     print(Y+'[*] Hash Subport :','\n',('*'*20),'\n')
                     print('[*] MD5             [*] SHA_1 ')
@@ -419,5 +421,4 @@ class Hash_Creck :
      
 
 if __name__ == '__main__':
-   Hash_Creck()
-
+   Plain_Hash()
