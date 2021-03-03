@@ -9,7 +9,7 @@
 * SHA3_384 - BLAKE2c - SHA_3_512
 * SHA_512  - BLAKE2b - BLAKE2b 
 * SHA3_224 - SHA3_224  - SHA_3_256
-##How to use :
+## How to use :
 * git clone https://github.com/jac11/PlainHash
 * cd PlainHash/
 * chmod +x PlainHash.py.py
