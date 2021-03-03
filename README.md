@@ -1,9 +1,10 @@
 # PlainHash
 * PlainHash written by python 3.9.1
 
-##info 
+## info 
 * plainHash tools hepe crack hash by using wordlist
 * Plain_Hash use Secure hashes and message digests 'hashlib'
+* Not subport salt and pepper hash
 ##  Hash Subport : 
 * MD5  - SHA_1 - SHA_256
 * SHA3_384 - BLAKE2c - SHA_3_512
