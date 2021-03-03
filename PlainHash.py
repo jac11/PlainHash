@@ -402,7 +402,7 @@ class Plain_Hash :
                     time.sleep(1)  
                     print(Y+'\n[*] Hash-Identifier\n',("*"*20),'\n')
                     print(P+'[*] Input Hash Not In Our Database '+W+'\n')
-                    print(Y+'[*] Hash Subport :','\n',('*'*20),'\n')
+                    print(Y+'[*] Hash Support :','\n',('*'*20),'\n')
                     print('[*] MD5             [*] SHA_1 ')
                     print('[*] SHA_256         [*] SHA_3_256')
                     print('[*] SHA3_384        [*] BLAKE2c')
