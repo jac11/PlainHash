@@ -16,7 +16,7 @@
 * to check all  option open help menu by typing ./PlainHash.py -h or --help
 * 
 ##  [ help menu overview ]
- <img src = "images/6.png">
+ <img src = "images/.png">
 
 ### ScreenShot
  <img src = "images/1.gif" width=350> <img src = "images/2.gif" width=350> <img src = "images/3.png" width=350> <img src = "images/4.png" width=350>
