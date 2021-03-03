@@ -2,7 +2,7 @@
 * PlainHash written by python 3.9.1
 
 ## info 
-* plainHash tools help to  crack hash by using wordlist
+* plainHash script help to  crack hash by using wordlist
 * Plain_Hash use Secure hashes and message digests 'hashlib'
 * Not support salt and pepper hash
 ##  Hash Support : 
