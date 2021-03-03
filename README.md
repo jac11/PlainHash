@@ -4,8 +4,8 @@
 ## info 
 * plainHash tools hepe crack hash by using wordlist
 * Plain_Hash use Secure hashes and message digests 'hashlib'
-* Not subport salt and pepper hash
-##  Hash Subport : 
+* Not support salt and pepper hash
+##  Hash Support : 
 * MD5  - SHA_1 - SHA_256
 * SHA3_384 - BLAKE2c - SHA_3_512
 * SHA_512  - BLAKE2b - BLAKE2b 
