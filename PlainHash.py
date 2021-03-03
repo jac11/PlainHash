@@ -419,7 +419,7 @@ class Plain_Hash :
         parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")      
         parser.add_argument("-H",'--hash' , metavar='' , action=None  ,help ="Hash string Example:\
          ./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist  ") 
-        parser.add_argument("-w","--wordlist" , metavar='' , action=None ,required=True,help ="wordlist of paaswords") 
+        parser.add_argument("-w","--wordlist" , metavar='' , action=None ,required=True,help ="wordlist of passwords") 
         parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input \
         Example: ./PlainHash.py -r hash.txt -w wordlist") 
         self.args = parser.parse_args()     
