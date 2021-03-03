@@ -2,7 +2,7 @@
 * PlainHash written by python 3.9.1
 
 ## info 
-* plainHash tools hepe crack hash by using wordlist
+* plainHash tools help to  crack hash by using wordlist
 * Plain_Hash use Secure hashes and message digests 'hashlib'
 * Not support salt and pepper hash
 ##  Hash Support : 
@@ -13,7 +13,7 @@
 ## How to use :
 * git clone https://github.com/jac11/PlainHash
 * cd PlainHash/
-* chmod +x PlainHash.py.py
+* chmod +x PlainHash.py
 * to check all  option open help menu by typing ./PlainHash.py -h or --help
 * you can use input hash Example: ./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist
 * or you can use as file input ./PlainHash.py -r hash.txt -w wordlist
