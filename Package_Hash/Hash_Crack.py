@@ -66,7 +66,7 @@ class Plain_Hash :
              print('[*] Windows-NTLM-V1 MD4 Encode[UTF-16LE]'+W)
              print (Banner)      
              exit()
-             
+            
      def input_hash(self):
             
             if self.args.read:               
@@ -220,7 +220,8 @@ class Plain_Hash :
                              else:                              
                                 print (B+'\n[*] Password Not Found','\n')
                                 print ('[*] PLease Try another WordList','\n',('*'*30)+W)
-                                exit()                                   
+                                exit() 
+                                                                
                 elif len(self.input_value)== len(self.SHA_256) and len(self.input_value)== len(self.SHA_3_256 ) \
                 and len(self.input_value)== len(self.BLAKE2c):
                             if  not self.args.wordlist :
@@ -240,7 +241,7 @@ class Plain_Hash :
                             print (B+'[*] '+W+B+'Hash  ID  : BLAKE2S  |' ,' [*] len  :'+W+B+str(len(self.BLAKE2c ))+W) 
                             print((B+'*'*30+W),'\n',B+'[*] '+W+R+'Plain_Hash_Start','\n',(B+'-'*20+W),'\n')
                             time.sleep(2)
-                            print(B+'[*] '+W+B+'Original Hash      : '+W,O+self.input_value+W ) 
+                            print(B+'[*] '+W+B+'Original Hash      : '+W,O+self.input_value[0:45],'\n','                      : ', self.input_value[46:] +W) 
                             if self.args.hash or self.args.read:
                                self.path = os.path.abspath(self.args.wordlist)
                                self.list = open(self.path,'r',encoding = "ISO-8859-1")             
@@ -252,29 +253,39 @@ class Plain_Hash :
                                   hash_password1 = hashlib.sha3_256(secrit.encode()).hexdigest()
                                   hash_password2 = hashlib.blake2s(secrit.encode()).hexdigest()
                                   if hash_password == self.input_value :
-                                     print(B+'[*] '+W+R+'Same Hash Match    : ',hash_password+W)  
+                                     print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password2[0:45])\
+                                     ;print('                       : ',hash_password2[46:]+W,'\n')  
                                      print (B+'[*] '+W+B+'Hash ID            :'+W+R+'  sha256 '+W) 
                                      print (B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                      print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
   
                                      exit()                           
                                   elif hash_password1 ==self.input_value :
-                                       print(B+'[*] '+W+Y+'Same Hash Match    : '+W,Y+hash_password1+W)  
+                                       print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password2[0:45])\
+                                       ;print('                       : ',hash_password2[46:]+W,'\n')  
                                        print (B+'[*] '+W+B+'Hash ID            :'+W+R+'  SHA3_256 '+W) 
                                        print (B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                        print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)                              
  
                                        exit()   
                                   elif hash_password2 ==self.input_value:
-                                       print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password2+W)  
+                                       print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password2[0:45])\
+                                       ;print('                       : ',hash_password2[46:]+W,'\n')  
                                        print (B+'[*] '+W+Y+'Hash ID            :'+W+Y+'  BLAKE2S '+W) 
                                        print (B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                        print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
 
                                        exit()                                                                                              
-                                  print(B+'[*] '+W+B+'Try Password       : '+W,P+secrit+W);print(B+'[*] '+W+R+'Try Hash sha256    : '+W,R+hash_password+W)\
-                                  ;print(B+'[*] '+W+Y+'Try Hash sha3_256  : '+W,Y+hash_password1+W)\
-                                  ;print(B+'[*] '+W+B+'Try Hash blake2s   : '+W,B+hash_password2+W);print(B+'[*] '+W+R+'Password Count     : '+W,P+str(count)+W)
+                                  print(B+'[*] '+W+B+'Try Password       : '+W,P+secrit+W);print(); print(B+'[*] '+W+R+'Try Hash sha256    : ',\
+                                  hash_password[:45]);print('                       : ',hash_password[46:]+W)\
+                                  ;print()\
+                                  ;print(B+'[*] '+W+Y+'Try Hash SHA3_256  : ',hash_password1[:45])\
+                                  ;print('                       : ',hash_password1[46:]+W)\
+                                  ;print()\
+                                  ;print(B+'[*] '+W+B+'Try Hash BLAKE2S   : ',hash_password2[:45])\
+                                  ;print('                       : ',hash_password2[46:]+W)\
+                                  ;print()\
+                                  ;print(B+'[*] '+W+R+'Password Count     : ',P+str(count)+W)
                                   time.sleep(0.15)                           
                                   sys.stdout.write('\x1b[1A')
                                   sys.stdout.write('\x1b[2K')                                                                                   
@@ -286,11 +297,26 @@ class Plain_Hash :
                                   sys.stdout.write('\x1b[2K')                                                                                                           
                                   sys.stdout.write('\x1b[1A')
                                   sys.stdout.write('\x1b[2K') 
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K')   
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K') 
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K') 
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K') 
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K') 
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K')   
+                                  sys.stdout.write('\x1b[1A')
+                                  sys.stdout.write('\x1b[2K') 
                                   count +=1         
                                else: 
                                  print (B+'\n[*] Password Not Found','\n')
                                  print ('[*] PLease Try another WordList','\n',('*'*30)+W)
-                                 exit()                                       
+                                 exit() 
+                                                      
                 elif len(self.input_value)	== len(self.SHA_3_512) and len(self.input_value)==len(self.BLAKE2b)\
                 and len(self.input_value)== len (self.SHA_512):
                               if  not self.args.wordlist :
@@ -475,6 +501,5 @@ class Plain_Hash :
             parser.print_help()         
             exit()
            
-
 if __name__ == '__main__':
    Plain_Hash()
