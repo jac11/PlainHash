@@ -56,10 +56,14 @@ class Linux_Hash:
                re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
                hash_type =    str(re.findall('(...[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
-               self.path = os.path.abspath(self.args.wordlist)
-               self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-               self.line = self.list.read()            
-               passwords = self.line.split()  
+               try:
+                  self.path = os.path.abspath(self.args.wordlist)
+                  self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                  self.line = self.list.read()            
+                  passwords = self.line.split() 
+               except FileNotFoundError :
+                   print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                   exit()      
                print(B+'[*]'+W+R+' Hash Id   :'+W+Y+' MD5-based'+W+B+'crypt:[md5crypt] '+W)
                time.sleep(1)
                print(B+'[*]'+W+R+' Hash Salt :'+W+Y,re_hash_salt)
@@ -98,10 +102,14 @@ class Linux_Hash:
                re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
                hash_type =    str(re.findall('\S+\D+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                         
                Hash = self.input_value.replace(hash_type,'')
-               self.path = os.path.abspath(self.args.wordlist)
-               self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-               self.line = self.list.read()            
-               passwords = self.line.split()  
+               try:
+                   self.path = os.path.abspath(self.args.wordlist)
+                   self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                   self.line = self.list.read()            
+                   passwords = self.line.split()  
+               except FileNotFoundError :
+                   print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                   exit()        
                print(B+'[*]'+W+R+' Hash Id   :'+W+Y+' bcrypt - Version: y '+W)
                time.sleep(1)
                print(B+'[*]'+W+R+' Hash Salt :'+W+Y,hash_type)
@@ -151,10 +159,14 @@ class Linux_Hash:
                self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()\
                .replace(',','').replace(' ','')+'$'                       
                Hash = self.input_value.replace(hash_type,'')
-               self.path = os.path.abspath(self.args.wordlist)
-               self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-               self.line = self.list.read()            
-               passwords = self.line.split()  
+               try:
+                  self.path = os.path.abspath(self.args.wordlist)
+                  self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                  self.line = self.list.read()            
+                  passwords = self.line.split()  
+               except FileNotFoundError :
+                   print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                   exit()           
                print(B+'[*]'+W+R+' Hash Id   :'+W+Y+' SHA1-based'+W+B+ ' crypt: '+W+R+'[sha1crypt] '+W)
                time.sleep(1)
                print(B+'[*]'+W+R+' Hash Salt :'+W+Y,hash_type)
@@ -201,10 +213,14 @@ class Linux_Hash:
                re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
                hash_type =    str(re.findall('(...[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
-               self.path = os.path.abspath(self.args.wordlist)
-               self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-               self.line = self.list.read()            
-               passwords = self.line.split()  
+               try:
+                  self.path = os.path.abspath(self.args.wordlist)
+                  self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                  self.line = self.list.read()            
+                  passwords = self.line.split()
+               except FileNotFoundError :
+                  print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                  exit()             
                print(B+'[*]'+W+R+' Hash Id   :'+W+Y+' SHA256-based'+W+B+ ' crypt: '+'W+R+[sha256crypt] '+W)
                time.sleep(1)
                print(B+'[*]'+W+R+' Hash Salt :'+W+Y,re_hash_salt)
@@ -252,10 +268,14 @@ class Linux_Hash:
                re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
                hash_type =    str(re.findall('(...[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
-               self.path = os.path.abspath(self.args.wordlist)
-               self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-               self.line = self.list.read()            
-               passwords = self.line.split()  
+               try:
+                  self.path = os.path.abspath(self.args.wordlist)
+                  self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                  self.line = self.list.read()            
+                  passwords = self.line.split()  
+               except FileNotFoundError :
+                   print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                   exit()           
                print(B+'[*]'+W+R+' Hash Id   :'+W+Y+' SHA512-based'+W+B+ ' crypt: '+W+R+'[sha512crypt] '+W)
                time.sleep(1)
                print(B+'[*]'+W+R+' Hash Salt :'+W+Y,re_hash_salt)
@@ -297,11 +317,9 @@ class Linux_Hash:
                    exit() 
                                                                                                                               
         def control(self):
-    
            parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")      
            parser.add_argument("-w","--wordlist" , metavar='' , action=None ,required=True,help ="wordlist of passwords") 
-           parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input \
-           Example: ./PlainHash.py -r hash.txt -w wordlist") 
+           parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input" ) 
            self.args = parser.parse_args()     
            if len(sys.argv)!=1 :
               pass
