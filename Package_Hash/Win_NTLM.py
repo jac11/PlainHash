@@ -27,7 +27,7 @@ class Win_Hash:
           
       def Hash_id(self):
             
-            if self.args.read:               
+            if self.args.read :               
                 try:
                    self.path= os.path.abspath(self.args.read)
                    self.list= open(self.path)             
@@ -60,12 +60,16 @@ class Win_Hash:
                      print((B+'*'*30+W),'\n',B+'[*]'+W+R+' Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                      time.sleep(2)
                      print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[:33]+W )\
-                     ;print(O+'                    : '+W,O+self.input_value[34:]+W)
-                     if self.args.read :     
-                        self.path = os.path.abspath(self.args.wordlist)
-                        self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                        self.line = self.list.read()            
-                        passwords = self.line.split()
+                     ;print(O+'                    : '+W,O+self.input_value[33:]+W)
+                     if self.args.read :  
+                        try:   
+                            self.path = os.path.abspath(self.args.wordlist)
+                            self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                            self.line = self.list.read()            
+                            passwords = self.line.split()
+                        except FileNotFoundError :
+                            print(Y+'[*] Wordlist File ','{}'.format(self.path),W+B+' Not Found'+W) 
+                            exit()        
                         count = 0
                         for secrit in passwords :                            
                             Hash_LM = str(re.findall('\w+:',self.input_value)).replace('[','').replace(']','').replace("'",'')
@@ -100,7 +104,7 @@ class Win_Hash:
                       print(Banner)
                       exit()                                                
       def control(self): 
-            
+          
            parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]") 
            parser.add_argument("-w","--wordlist" , metavar='' , action=None ,required=True,help ="wordlist of passwords") 
            parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input \
@@ -116,4 +120,3 @@ if __name__ == '__main__':
      Win_Hash()
     
       
-
