@@ -4,12 +4,19 @@
 ## info 
 * plainHash script help to  crack hash by using wordlist
 * Plain_Hash use Secure hashes and message digests 'hashlib'
-* Not support salt and pepper hash
+* Plain_Hash use for salt hash 'crypt' 
+* user -i info or --info info for more information
 ##  Hash Support : 
 * MD5  - SHA_1 - SHA_256
 * SHA3_384 - BLAKE2c - SHA_3_512
 * SHA_512  - BLAKE2b - BLAKE2b 
 * SHA3_224 - SHA3_224  - SHA_3_256
+### Salt Hash Support:
+* MD5-CRYPT  - BCRYPT-[Y]
+* SHA1-CRYPT - SHA256-CRYPT
+* SHA512-CRYPT
+### Windows-Hash
+* Windows-NTLM-V1 MD4 Encode[UTF-16LE]
 ## How to use :
 * git clone https://github.com/jac11/PlainHash
 * cd PlainHash/
