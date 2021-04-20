@@ -29,7 +29,7 @@
   
 
 ### ScreenShot
- <img src = "images/2.gif" width=400> <img src = "images/7.gif" width=400>  <img src = "images/3.png" width=350> <img src = "images/9.png" width=350>
+ <img src = "images/2.gif" width=400> <img src = "images/7.gif" width=400>  <img src = "images/3.png" width=400> 
   
 ### [for Connect]
 * administrator@jacstory.tech
