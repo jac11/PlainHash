@@ -515,7 +515,7 @@ class Plain_Hash :
         parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")      
         parser.add_argument("-H",'--hash' , metavar='' , action=None  ,help ="Hash string ") 
         parser.add_argument("-w","--wordlist" , metavar='' , action=None ,help ="wordlist of passwords") 
-        parser.add_argument("-i","--info" , metavar='' , action=None ,help ="Show the Hash Supporting  and Informtion ")        
+        parser.add_argument("-i","--info" , metavar='' , action=None ,help ="Show the Hash Supporting  and Information")        
         parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input") 
         
         self.args = parser.parse_args()        
