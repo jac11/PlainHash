@@ -3,8 +3,8 @@
 
 ## info 
 * plainHash script help to  crack hash by using wordlist
-* Plain_Hash use Secure hashes and message digests 'hashlib'
-* Plain_Hash use for salt hash 'crypt' 
+* PlainHash use Secure hashes and message digests 'hashlib'
+* PlainHash use for salt hash 'crypt' 
 * user -i info or --info info for more information
 ##  Hash Support : 
 * MD5  - SHA_1 - SHA_256
