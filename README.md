@@ -28,7 +28,7 @@
  <img src = "images/5.png"><img src = "images/8.png">
 
 ### ScreenShot
- <img src = "images/2.gif" width=400> <img src = "images/7.gif" width=400>  <img src = "images/3.png" width=350> <img src = "images/4.png" width=350>
+ <img src = "images/2.gif" width=400> <img src = "images/7.gif" width=400>  <img src = "images/3.png" width=350> <img src = "images/9.png" width=350>
   
 ### [for Connect]
 * administrator@jacstory.tech
