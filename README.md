@@ -25,7 +25,7 @@
 * you can use input hash Example: ./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist
 * or you can use as file input ./PlainHash.py -r hash.txt -w wordlist
 ##  [ help menu overview ] 
- <img src = "images/5.png">
+ <img src = "images/5.png"><img src = "images/8.png">
 
 ### ScreenShot
  <img src = "images/2.gif" width=400> <img src = "images/7.gif" width=400>  <img src = "images/3.png" width=350> <img src = "images/4.png" width=350>
