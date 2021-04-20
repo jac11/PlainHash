@@ -5,7 +5,9 @@ import time
 import argparse
 import sys
 import os
+
 from Package_Hash.Banner import Banner
+
 
 W='\033[0m'     
 R='\033[31m'    
@@ -44,29 +46,17 @@ class Plain_Hash :
          self.SHA3_224  = 'a823c3f51659da24d9a61254e9f61c39a4c8f11fd65820542403dd1c'
          self.SHA_224   = 'dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614'
          self.control()
-         self.input_hash()          
-         if self.args.info and sys.argv[2]=='info':
-            self.print_info()
-         else :
-             print(P+'[*] More Info Use -i info or --info info'+W )  
-             exit()     
-     def print_info(self):             
-             print(Y+'[*] Hash Support :','\n','*'*20,'\n')
-             print('[*] MD5             [*] SHA_1 ')
-             print('[*] SHA_256         [*] SHA_3_256')
-             print('[*] SHA3_384        [*] BLAKE2c')
-             print('[*] SHA_3_512       [*] SHA_512')
-             print('[*] BLAKE2b         [*] SHA3_224')
-             print('[*] SHA_224 ')
-             print('='*35,'\n\n','[*] Salt Hash Support :','\n',('*'*25),'\n')
-             print('[*] MD5-CRYPT       [*] BCRYPT-[Y]')
-             print('[*] SHA1-CRYPT      [*] SHA256-CRYPT')
-             print('[*] SHA512-CRYPT') 
-             print('='*35,'\n\n','[*] Windows-Hash :','\n',('*'*25),'\n')
-             print('[*] Windows-NTLM-V1 MD4 Encode[UTF-16LE]'+W)
-             print (Banner)      
-             exit()
-            
+         self.input_hash() 
+         try:         
+            if self.args.info and sys.argv[2]=='info':
+               from Package_Hash.Info import Info
+               run = print_info()
+            else :
+               print(P+'[*] More Info Use -i info or --info info'+W )  
+               exit()
+         except IndexError :
+               print(P+'[*] More Info Use -i info or --info info'+W )  
+               exit()                       
      def input_hash(self):
             
             if self.args.read:               
@@ -97,34 +87,50 @@ class Plain_Hash :
                      print(B+'[*]'+W,R+'Hash-Identifier'+W)
                      print(Y+"*"*20+W,'\n')
                      time.sleep(1)
-                     print(B+'[*] '+W+R+'Hash  ID  : MD5   |', ' [*] len  :'+W,R+str(len(self.md5_hash))+W,'\n')
-                     time.sleep(2)
+                     print(B+'[*] '+W+R+'Hash  ID  :'+Y+' MD5   |', ' [*] len  :',str(len(self.md5_hash))+W)
+                     time.sleep(1)
+                     print(B+'[*] '+W+R+'Hash  ID  : '+W+P+'Windows NTLM-Hash'+W+'\n')
+                     time.sleep(1)
                      print((B+'*'*30+W),'\n',B+'[*]'+W+R+' Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                      time.sleep(2)
                      print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value+W )
-                     if self.args.hash or self.args.read :     
-                        self.path = os.path.abspath(self.args.wordlist)
-                        self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                        self.line = self.list.read()            
-                        passwords = self.line.split()
+                     if self.args.hash or self.args.read : 
+                        try:    
+                           self.path = os.path.abspath(self.args.wordlist)
+                           self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                           self.line = self.list.read()            
+                           passwords = self.line.split()
+                        except FileNotFoundError :
+                            print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                            exit()  
                         count = 0
                         for secrit in passwords :
                             hash_password = hashlib.md5(secrit.encode()).hexdigest()
+                            hash_password1 = hashlib.new('md4',secrit.encode('utf-16le')).hexdigest()                            
                             if hash_password == self.input_value : 
                                print(B+'[*] '+W+Y+'Same Hash Match : '+W,B+hash_password+W)
+                               print (B+'[*] '+W+R+'Hash ID         :'+W+Y+'  MD5  '+W)
+                               print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
+                               print(B+'[*] '+W+Y+'Password Count  : '+W,P+str(count)+W)                                                           
+                               exit()
+                            elif hash_password1 == self.input_value : 
+                               print(B+'[*] '+W+R+'Same Hash Match : ',hash_password1+W)
+                               print (B+'[*] '+W+B+'Hash ID         :  Windows NTLM-Hash '+W)
                                print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
                                print(B+'[*] '+W+Y+'Password Count  : '+W,R+str(count)+W)                                                           
-                               exit()
-                            print(B+'[*] '+W+R+'Try Password    : '+W,secrit);print(B+'[*] '+W+R+'Try Hash        : '+W,R+hash_password+W)\
-                            ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)
-                           
+                               exit()   
+                            print(B+'[*] '+W+P+'Try Password    : '+W,P+secrit+W);print(B+'[*] '+W+R+'Try MD5 Hash    : '+W,R+hash_password+W)\
+                            ;print(B+'[*] '+W+B+'Try NTLM-Hash   : ',hash_password1+W)\
+                            ;print(B+'[*] '+W+Y+'Password Count  : '+W,P+str(count)+W)
                             time.sleep(0.10)                           
                             sys.stdout.write('\x1b[1A')
                             sys.stdout.write('\x1b[2K')                                                       
                             sys.stdout.write('\x1b[1A')
                             sys.stdout.write('\x1b[2K')                            
                             sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')   
+                            sys.stdout.write('\x1b[2K')  
+                            sys.stdout.write('\x1b[1A')
+                            sys.stdout.write('\x1b[2K')    
                             count +=1
                         else:  
                             print (B+'\n[*] Password Not Found','\n')
@@ -146,10 +152,14 @@ class Plain_Hash :
                         time.sleep(2)
                         print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value+W )
                         if self.args.hash or self.args.read :
-                           self.path = os.path.abspath(self.args.wordlist)
-                           self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                           self.line = self.list.read()            
-                           passwords = self.line.split()
+                           try:    
+                              self.path = os.path.abspath(self.args.wordlist)
+                              self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                              self.line = self.list.read()            
+                              passwords = self.line.split()
+                           except FileNotFoundError :
+                             print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                             exit()  
                            count = 0
                            for secrit in passwords :
                                hash_password = hashlib.sha1(secrit.encode()).hexdigest()
@@ -188,12 +198,16 @@ class Plain_Hash :
                            time.sleep(2)
                            print(B+'[*] '+W+Y+'Original Hash      : '+W,O+self.input_value[:50],'\n','                      : ', self.input_value[51:] +W)
                            print()
-                           if self.args.hash or self.args.read:
-                             self.path = os.path.abspath(self.args.wordlist)
-                             self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                             self.line = self.list.read()            
-                             passwords = self.line.split()
-                             count = 0  
+                           if self.args.hash or self.args.read :
+                             try:    
+                                self.path = os.path.abspath(self.args.wordlist)
+                                self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                                self.line = self.list.read()            
+                                passwords = self.line.split()
+                             except FileNotFoundError :
+                                print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                                exit()  
+                             count = 0
                              for secrit in passwords :
                                  hash_password = hashlib.sha3_384(secrit.encode()).hexdigest()
                                  if hash_password == self.input_value : 
@@ -243,10 +257,14 @@ class Plain_Hash :
                             time.sleep(2)
                             print(B+'[*] '+W+B+'Original Hash      : '+W,O+self.input_value[0:45],'\n','                      : ', self.input_value[46:] +W) 
                             if self.args.hash or self.args.read:
-                               self.path = os.path.abspath(self.args.wordlist)
-                               self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                               self.line = self.list.read()            
-                               passwords = self.line.split()
+                               try:    
+                                  self.path = os.path.abspath(self.args.wordlist)
+                                  self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                                  self.line = self.list.read()            
+                                  passwords = self.line.split()
+                               except FileNotFoundError :
+                                  print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                                  exit()  
                                count = 0  
                                for secrit in passwords :
                                   hash_password  = hashlib.sha256(secrit.encode()).hexdigest()
@@ -339,10 +357,14 @@ class Plain_Hash :
                               print(B+'[*] '+W+B+'Original Hash      : '+W,O+self.input_value[0:63],'\n','                      : ', self.input_value[64:128] +W)
                               print()
                               if self.args.hash or self.args.read:
-                                 self.path = os.path.abspath(self.args.wordlist)
-                                 self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                                 self.line = self.list.read()            
-                                 passwords = self.line.split()                        
+                                 try:    
+                                    self.path = os.path.abspath(self.args.wordlist)
+                                    self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                                    self.line = self.list.read()            
+                                    passwords = self.line.split()
+                                 except FileNotFoundError :
+                                    print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                                    exit()                        
                                  count = 0  
                                  for secrit in passwords :
                                      hash_password  = hashlib.sha3_512(secrit.encode()).hexdigest()
@@ -430,10 +452,14 @@ class Plain_Hash :
                                 time.sleep(2)
                                 print(B+'[*] '+W+B+'Original Hash      : '+W,O+self.input_value+W )  
                                 if self.args.hash or self.args.read:                                  
-                                  self.path = os.path.abspath(self.args.wordlist)
-                                  self.list = open(self.path,'r',encoding = "ISO-8859-1")             
-                                  self.line = self.list.read()            
-                                  passwords = self.line.split()
+                                  try:    
+                                     self.path = os.path.abspath(self.args.wordlist)
+                                     self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                                     self.line = self.list.read()            
+                                     passwords = self.line.split()
+                                  except FileNotFoundError :
+                                      print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                                      exit()  
                                   count = 0  
                                   for secrit in passwords :
                                       hash_password = hashlib.sha3_224(secrit.encode()).hexdigest()
@@ -467,11 +493,11 @@ class Plain_Hash :
                                      print (B+'\n[*] Password Not Found','\n')
                                      print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
                                      exit()
-                elif "$" in self.input_value  :
+                elif "$" in self.input_value :
                      from Package_Hash.Linux_Hash import Linux_Hash
                      run = Linux_Hash()
                      exit()  
-                elif "$" not in self.input_value and ':' in self.input_value:
+                elif "$" not in self.input_value and ':' in self.input_value :
                      from Package_Hash.Win_NTLM import Win_Hash
                      run = Win_Hash()                                        
                 else :
@@ -479,8 +505,7 @@ class Plain_Hash :
                    print(P+'[*] Input Hash Not In Our Database '+W)
                    print(P+'[*] With "Crypt Hash" Use -r Option or --read'+W)   
                    print(P+'[*] With "Windows-NTLM" Use -r Option or --read'+W)                
-                   
-                           
+
         except KeyboardInterrupt:
               print(Banner)
               exit()   
@@ -488,12 +513,11 @@ class Plain_Hash :
      def control(self):
     
         parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")      
-        parser.add_argument("-H",'--hash' , metavar='' , action=None  ,help ="Hash string Example:\
-         ./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist  ") 
+        parser.add_argument("-H",'--hash' , metavar='' , action=None  ,help ="Hash string ") 
         parser.add_argument("-w","--wordlist" , metavar='' , action=None ,help ="wordlist of passwords") 
-        parser.add_argument("-i","--info" , metavar='' , action=None ,help ="Show the Hash Supporting Info ")        
-        parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input \
-        Example: ./PlainHash.py -r hash.txt -w wordlist") 
+        parser.add_argument("-i","--info" , metavar='' , action=None ,help ="Show the Hash Supporting  and Informtion ")        
+        parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input") 
+        
         self.args = parser.parse_args()        
         if len(sys.argv)!=1 :
             pass
