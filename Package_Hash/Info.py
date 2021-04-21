@@ -31,7 +31,7 @@ class Info:
              print ('[*] SHA1-CRYPT      [*] SHA256-CRYPT')
              print ('[*] SHA512-CRYPT'+W+'\n')              
              print (P+'[+] With "Crypt Hash" Copy Hash Into File') 
-             print ('[+] Example : aad3b435b51404eeaad3b435b51404ee:8846F7EAEE8FB117AD06BDD830B7586C')
+             print ('[+] Example : $6$efxS7PCQU0SZi33L$H7sWCUQJ0dDBKwSZmxwADtp6D553OyjFRUfA3PKnf4JAT625jiRvDBFUTB2501CLCDzNlbjkCqM4PFJsxV9Qx/')
              print ('[*] then Use -r Option or --read To give File Path' )
              print ('[+] Example : ./PlainHash.py - r /home/hash.txt -w /home/wordlist'+W+'\n')             
              print (Y+'='*35,'\n\n','[*] Windows-Hash :','\n',('*'*25),'\n')             
