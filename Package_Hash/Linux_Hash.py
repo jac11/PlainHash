@@ -155,7 +155,7 @@ class Linux_Hash:
            elif self.args.read  and '$sha1$' in self.input_value :
                e_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
                re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
-               hash_type =    str(re.findall('(...[^$^]\w+[$])',\
+               hash_type =    str(re.findall('^[$^]\S+[$]',\
                self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()\
                .replace(',','').replace(' ','')+'$'                       
                Hash = self.input_value.replace(hash_type,'')
@@ -211,7 +211,7 @@ class Linux_Hash:
            elif self.args.read  and '$5$' in self.input_value :
                re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
                re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
-               hash_type =    str(re.findall('(...[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
+               hash_type =    str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
                try:
                   self.path = os.path.abspath(self.args.wordlist)
