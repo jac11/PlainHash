@@ -210,7 +210,7 @@ class Linux_Hash:
                  
            elif self.args.read  and '$5$' in self.input_value :
                re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
-               re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
+               re_hash_salt = str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
                hash_type =    str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
                try:
@@ -225,7 +225,7 @@ class Linux_Hash:
                time.sleep(1)
                print(B+'[*]'+W+R+' Hash Salt :'+W+Y,re_hash_salt)
                time.sleep(1)
-               print(B+'[*]'+W+R+' Hash      :'+Y+Hash+W)
+               print(B+'[*]'+W+R+' Hash      : '+Y+Hash+W)
                time.sleep(1)
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
