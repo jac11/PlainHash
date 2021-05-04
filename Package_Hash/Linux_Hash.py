@@ -54,7 +54,7 @@ class Linux_Hash:
            if self.args.read  and '$1$' in self.input_value  :
                re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
                re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
-               hash_type =    str(re.findall('(...[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
+               hash_type =    str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
                try:
                   self.path = os.path.abspath(self.args.wordlist)
@@ -83,8 +83,8 @@ class Linux_Hash:
                          break
                          exit()
                    print(B+'[*] '+W+R+'Try Password    : '+W,secrit);print(B+'[*] '+W+R+'Try Hash        : '+W,R+hash_type+crypt_Hash[len(hash_type):]+W)\
-                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)      
-                   time.sleep(0.10)                           
+                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)   
+                   time.sleep(0)                              
                    sys.stdout.write('\x1b[1A')
                    sys.stdout.write('\x1b[2K')                                                       
                    sys.stdout.write('\x1b[1A')
@@ -118,24 +118,22 @@ class Linux_Hash:
                time.sleep(1)
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
-               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:35],'\n','                   : ', self.input_value[36:] +W)
+               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:35],'\n','                   : ', self.input_value[35:] +W)
                count = 0
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type)
                    if crypt_Hash == self.input_value :
                          print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:35])\
-                         ;print('                    : ',crypt_Hash[36:]+W) 
+                         ;print('                    : ',crypt_Hash[35:]+W) 
                          print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
                          print(B+'[*] '+W+Y+'Password Count  : '+W,R+str(count)+W)                                                           
                          break
                          exit()
                    print(B+'[*] '+W+B+'Try Password    : '+W,P+secrit+W);print()\
                    ; print(B+'[*] '+W+R+'Try Hash        : ', R+hash_type+W+B+crypt_Hash[len(hash_type):40])\
-                   ;print('                    : ',crypt_Hash[41:]+W)\
-                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)  
-                               
-                   
-                   time.sleep(0.10)                           
+                   ;print('                    : ',crypt_Hash[40:]+W)\
+                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)   
+                   time.sleep(0)                                                       
                    sys.stdout.write('\x1b[1A')
                    sys.stdout.write('\x1b[2K')                                                       
                    sys.stdout.write('\x1b[1A')
@@ -157,7 +155,7 @@ class Linux_Hash:
                re_hash_salt = str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
                hash_type =    str(re.findall('^[$^]\S+[$]',\
                self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()\
-               .replace(',','').replace(' ','')                       
+               .replace(',','').replace(' ','')                      
                Hash = self.input_value.replace(hash_type,'')
                try:
                   self.path = os.path.abspath(self.args.wordlist)
@@ -175,23 +173,22 @@ class Linux_Hash:
                time.sleep(1)
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
-               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:35],'\n','                   : ', self.input_value[36:] +W)
+               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:35],'\n','                   : ', self.input_value[35:] +W)
                count = 0
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type)
                    if crypt_Hash == self.input_value :
                          print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:35])\
-                         ;print('                    : ',crypt_Hash[36:]+W) 
+                         ;print('                    : ',crypt_Hash[35:]+W) 
                          print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
                          print(B+'[*] '+W+Y+'Password Count  : '+W,R+str(count)+W)                                                           
                          break
                          exit()
                    print(B+'[*] '+W+B+'Try Password    : '+W,P+secrit+W);print()\
                    ; print(B+'[*] '+W+R+'Try Hash        : ', R+hash_type+W+B+crypt_Hash[len(hash_type):40])\
-                   ;print('                    : ',crypt_Hash[41:]+W)\
-                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)  
-                                                   
-                   time.sleep(0.10)                           
+                   ;print('                    : ',crypt_Hash[40:]+W)\
+                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)   
+                   time.sleep(0)                         
                    sys.stdout.write('\x1b[1A')
                    sys.stdout.write('\x1b[2K')                                                       
                    sys.stdout.write('\x1b[1A')
@@ -207,10 +204,9 @@ class Linux_Hash:
                    print (B+'\n[*] Password Not Found','\n')
                    print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
                    exit() 
-                 
            elif self.args.read  and '$5$' in self.input_value :
                re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
-               re_hash_salt = str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
+               re_hash_salt = str(re.findall('(^[$^]\S+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
                hash_type =    str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
                try:
@@ -229,13 +225,13 @@ class Linux_Hash:
                time.sleep(1)
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
-               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[53:] +W)
+               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[52:] +W)
                count = 0
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type )                
                    if crypt_Hash == self.input_value :
                          print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:52])\
-                         ;print('                    : ',crypt_Hash[53:]+W,)  
+                         ;print('                    : ',crypt_Hash[52:]+W,)  
                          print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
                          print(B+'[*] '+W+Y+'Password Count  : '+W,R+str(count)+W)                                                           
                          break
@@ -243,9 +239,67 @@ class Linux_Hash:
                    print(B+'[*] '+W+B+'Try Password    : '+W,P+secrit+W);print()\
                    ;print(B+'[*] '+W+R+'Try Hash        : ',                  
                    R+hash_type+W+B+crypt_Hash[len(hash_type):52])\
-                   ;print('                    : ',crypt_Hash[53:]+W)\
-                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)      
-                   time.sleep(0.10)                           
+                   ;print('                    : ',crypt_Hash[52:]+W)\
+                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)    
+                   time.sleep(0)                          
+                   sys.stdout.write('\x1b[1A')
+                   sys.stdout.write('\x1b[2K')                                                       
+                   sys.stdout.write('\x1b[1A')
+                   sys.stdout.write('\x1b[2K')                            
+                   sys.stdout.write('\x1b[1A')
+                   sys.stdout.write('\x1b[2K')   
+                   sys.stdout.write('\x1b[1A')
+                   sys.stdout.write('\x1b[2K') 
+                   sys.stdout.write('\x1b[1A')
+                   sys.stdout.write('\x1b[2K')
+                   count +=1
+               else:  
+                   print (B+'\n[*] Password Not Found','\n')
+                   print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
+                   exit() 
+                                                                                 
+#^[$^]\S+[$]......................                
+           elif self.args.read  and '$2y$' in self.input_value :
+               re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
+               re_hash_Cost = str(re.findall('[^$]\d+[$^]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace('$','')               
+               hash_type =    str(re.findall('^[$^]\S+[$]......................' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                         
+               Hash = self.input_value.replace(hash_type,'')
+               re_hash_print = self.input_value.replace(re_Hash_id,'').replace(re_hash_Cost,'').replace(hash_type,'').replace(Hash,'').replace('$','')
+               try:
+                  self.path = os.path.abspath(self.args.wordlist)
+                  self.list = open(self.path,'r',encoding = "ISO-8859-1")             
+                  self.line = self.list.read()            
+                  passwords = self.line.split()
+               except FileNotFoundError :
+                  print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
+                  exit()             
+               print(B+'[*]'+W+R+' Hash Id   :'+W+Y+ ' bcrypt-Version: 2y '+W+B+ ' crypt: '+W+R+'[blowfish hash]'+W)
+               time.sleep(1)
+               print(B+'[*]'+W+R+' Cost      :'+W+Y,re_hash_Cost)
+               time.sleep(1)
+               print(B+'[*]'+W+R+' Hash Salt : '+Y+re_hash_print+W)
+               time.sleep(1)
+               print(B+'[*]'+W+R+' Hash      : '+Y+Hash+W)
+               time.sleep(1)
+               print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
+               time.sleep(2)
+               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[52:] +W)
+               count = 0
+               for secrit in passwords :
+                   crypt_Hash = crypt.crypt(secrit,hash_type )                
+                   if crypt_Hash == self.input_value :
+                         print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:52])\
+                         ;print('                    : ',crypt_Hash[52:]+W,)  
+                         print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
+                         print(B+'[*] '+W+Y+'Password Count  : '+W,R+str(count)+W)                                                           
+                         break
+                         exit()
+                   print(B+'[*] '+W+B+'Try Password    : '+W,P+secrit+W);print()\
+                   ;print(B+'[*] '+W+R+'Try Hash        : ',                  
+                   R+hash_type+W+B+crypt_Hash[len(hash_type):52])\
+                   ;print('                    : ',crypt_Hash[52:]+W)\
+                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)   
+                   time.sleep(0)                              
                    sys.stdout.write('\x1b[1A')
                    sys.stdout.write('\x1b[2K')                                                       
                    sys.stdout.write('\x1b[1A')
@@ -265,7 +319,7 @@ class Linux_Hash:
                
            elif self.args.read  and '$6$' in self.input_value :
                re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
-               re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
+               re_hash_salt = str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
                hash_type =    str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
                try:
@@ -280,26 +334,26 @@ class Linux_Hash:
                time.sleep(1)
                print(B+'[*]'+W+R+' Hash Salt :'+W+Y,re_hash_salt)
                time.sleep(1)
-               print(B+'[*]'+W+R+' Hash      :'+W,Y+Hash [0:40],'\n','             :',Hash[41:]+W)
+               print(B+'[*]'+W+R+' Hash      :'+W,Y+Hash [0:40],'\n','             :',Hash[40:]+W)
                time.sleep(1)
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
-               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[53:] +W)
+               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[52:] +W)
                count = 0
                for secrit in passwords :
-                   crypt_Hash = crypt.crypt(secrit,hash_type )                
+                   crypt_Hash = crypt.crypt(secrit,hash_type)                
                    if crypt_Hash == self.input_value :
                          print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:52])\
-                         ;print('                    : ',crypt_Hash[53:]+W,'\n')  
+                         ;print('                    : ',crypt_Hash[52:]+W,'\n')  
                          print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
                          print(B+'[*] '+W+Y+'Password Count  : '+W,R+str(count)+W)                                                           
                          break
                          exit()
                    print(B+'[*] '+W+B+'Try Password    : '+W,P+secrit+W);print()\
                    ; print(B+'[*] '+W+R+'Try Hash        : ',R+hash_type+W+B+crypt_Hash[len(hash_type):52])\
-                   ;print('                    : ',crypt_Hash[53:]+W) \
-                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)                                           
-                   time.sleep(0.10)                           
+                   ;print('                    : ',crypt_Hash[52:]+W) \
+                   ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W) 
+                   time.sleep(0)                                                                     
                    sys.stdout.write('\x1b[1A')
                    sys.stdout.write('\x1b[2K')                                                       
                    sys.stdout.write('\x1b[1A')
