@@ -29,7 +29,8 @@ class Plain_Hash :
          global P
          global Y   
                                                       
-         print (Banner)                                          
+         print (Banner)   
+         self.md4_hash  = 'ea5698173fc6fdbe30a9af462b9fc847'                                       
          self.md5_hash  = 'cfcd208495d565ef66e7dff9f98764da'
          self.SHA_1     = 'b6589fc6ab0dc82cf12099d1c2d40ab994e8410c'
          self.SHA3_224  = 'a823c3f51659da24d9a61254e9f61c39a4c8f11fd65820542403dd1c'
@@ -85,9 +86,10 @@ class Plain_Hash :
                      print(B+'[*]'+W,R+'Hash-Identifier'+W)
                      print(Y+"*"*20+W,'\n')
                      time.sleep(1)
+                     print(B+'[*] '+W+R+'Hash  ID  :'+Y+' MD4   |', ' [*] len  :',str(len(self.md4_hash))+W)
                      print(B+'[*] '+W+R+'Hash  ID  :'+Y+' MD5   |', ' [*] len  :',str(len(self.md5_hash))+W)
                      time.sleep(1)
-                     print(B+'[*] '+W+R+'Hash  ID  : '+W+P+'Windows NTLM-Hash'+W+'\n')
+                     print(B+'[*] '+W+R+'Hash  ID  :'+Y+' NTLM  |', ' [*] len  :',str(len(self.md4_hash))+W)
                      time.sleep(1)
                      print((B+'*'*30+W),'\n',B+'[*]'+W+R+' Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                      time.sleep(2)
@@ -103,9 +105,16 @@ class Plain_Hash :
                             exit()  
                         count = 0
                         for secrit in passwords :
+                            hash_password0 = hashlib.new('md4',secrit.encode()).hexdigest()
                             hash_password = hashlib.md5(secrit.encode()).hexdigest()
-                            hash_password1 = hashlib.new('md4',secrit.encode('utf-16le')).hexdigest()                            
-                            if hash_password == self.input_value : 
+                            hash_password1 = hashlib.new('md4',secrit.encode('utf-16le')).hexdigest()
+                            if hash_password0 == self.input_value  : 
+                               print(B+'[*] '+W+Y+'Same Hash Match : '+W,B+hash_password0+W)
+                               print (B+'[*] '+W+R+'Hash ID         :'+W+Y+'  MD4  '+W)
+                               print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
+                               print(B+'[*] '+W+Y+'Password Count  : '+W,P+str(count)+W)                                                           
+                               exit()                                                       
+                            elif hash_password == self.input_value  : 
                                print(B+'[*] '+W+Y+'Same Hash Match : '+W,B+hash_password+W)
                                print (B+'[*] '+W+R+'Hash ID         :'+W+Y+'  MD5  '+W)
                                print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
@@ -117,7 +126,9 @@ class Plain_Hash :
                                print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
                                print(B+'[*] '+W+Y+'Password Count  : '+W,R+str(count)+W)                                                           
                                exit()   
-                            print(B+'[*] '+W+P+'Try Password    : '+W,P+secrit+W);print(B+'[*] '+W+R+'Try MD5 Hash    : '+W,R+hash_password+W)\
+                            print(B+'[*] '+W+P+'Try Password    : '+W,P+secrit+W)\
+                            ;print(B+'[*] '+W+R+'Try MD4 Hash    : '+W,R+hash_password0+W)\
+                            ;print(B+'[*] '+W+Y+'Try MD5 Hash    : ',hash_password+W)\
                             ;print(B+'[*] '+W+B+'Try NTLM-Hash   : ',hash_password1+W)\
                             ;print(B+'[*] '+W+Y+'Password Count  : '+W,P+str(count)+W)
                             time.sleep(0.1)                           
@@ -128,7 +139,9 @@ class Plain_Hash :
                             sys.stdout.write('\x1b[1A')
                             sys.stdout.write('\x1b[2K')  
                             sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')    
+                            sys.stdout.write('\x1b[2K') 
+                            sys.stdout.write('\x1b[1A')
+                            sys.stdout.write('\x1b[2K')   
                             count +=1
                         else:  
                             print (B+'\n[*] Password Not Found','\n')
