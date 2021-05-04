@@ -14,11 +14,12 @@ class Info:
              P='\033[35m'   
              Y='\033[1;33m'                          
              print (Y+'[*] Hash Support :','\n','*'*20,'\n')
-             print ('[*] MD5             [*] SHA_1 ')
+             print ('[*] MD4             ')
+             print ('[*] MD5             [*] SHA1  ')    
              print ('[*] SHA_224         [*] SHA3_224')
              print ('[*] SHA_256         [*] SHA3_256')
              print ('[*] SHA_384         [*] SHA3_384   ')
-             print ('[*] SHA_512         [*] SHA3_512')            
+             print ('[*] SHA_512         [*] SHA3_512')  
              print ('[*] BLAKE2b         [*] BLAKE2c'+W+'\n')            
              print (P+'[+] With non-Crypto Hsah Copy String Hash  Into File') 
              print ('[+] Same Like : 5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9')
@@ -50,11 +51,3 @@ class Info:
 if __name =='__main__':
     Info()     
     
- 
- 
-    print_info()
-if __name =='__main__':
-    Info()     
-    
- 
- 
