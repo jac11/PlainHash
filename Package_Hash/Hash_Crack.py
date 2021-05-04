@@ -120,7 +120,7 @@ class Plain_Hash :
                             print(B+'[*] '+W+P+'Try Password    : '+W,P+secrit+W);print(B+'[*] '+W+R+'Try MD5 Hash    : '+W,R+hash_password+W)\
                             ;print(B+'[*] '+W+B+'Try NTLM-Hash   : ',hash_password1+W)\
                             ;print(B+'[*] '+W+Y+'Password Count  : '+W,P+str(count)+W)
-                            time.sleep(0.10)                           
+                            time.sleep(0.1)                           
                             sys.stdout.write('\x1b[1A')
                             sys.stdout.write('\x1b[2K')                                                       
                             sys.stdout.write('\x1b[1A')
@@ -168,7 +168,7 @@ class Plain_Hash :
                                   exit()
                                print(B+'[*] '+W+R+'Try Password    : '+W,R+secrit+W);print(B+'[*] '+W+R+'Try Hash        : '+W,B+hash_password+W)\
                                ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)
-                               time.sleep(0.15)                           
+                               time.sleep(0.1)                           
                                sys.stdout.write('\x1b[1A')
                                sys.stdout.write('\x1b[2K')                                                     
                                sys.stdout.write('\x1b[1A')
@@ -231,7 +231,7 @@ class Plain_Hash :
                                       ;print(B+'[*] '+W+Y+'Try Hash sha3_384  : ',hash_password1[48:])\
                                       ;print('                       : ',hash_password1[48:]+W)\
                                       ;print(B+'[*] '+W+R+'Password Count     : '+W,P+str(count)+W)
-                                      time.sleep(0.15)                           
+                                      time.sleep(0.1)                           
                                       sys.stdout.write('\x1b[1A')
                                       sys.stdout.write('\x1b[2K')                                                                                   
                                       sys.stdout.write('\x1b[1A')
@@ -315,7 +315,7 @@ class Plain_Hash :
                                   ;print(B+'[*] '+W+B+'Try Hash BLAKE2S   : ',hash_password2[:32])\
                                   ;print('                       : ',hash_password2[32:]+W+'\n')\
                                   ;print(B+'[*] '+W+R+'Password Count     : ',P+str(count)+W)
-                                  time.sleep(0.15)                           
+                                  time.sleep(0.1)                           
                                   sys.stdout.write('\x1b[1A')
                                   sys.stdout.write('\x1b[2K')                                                                                   
                                   sys.stdout.write('\x1b[1A')
@@ -409,7 +409,7 @@ class Plain_Hash :
                                      ;print(B+'[*] '+W+B+'Try Hash sha512    : ',hash_password2[:64])\
                                      ;print('                       : ',hash_password2[64:]+W+'\n')\
                                      ;print(B+'[*] '+W+R+'Password Count     : ',P+str(count)+W)
-                                     time.sleep(0.15)                           
+                                     time.sleep(0.1)                           
                                      sys.stdout.write('\x1b[1A')
                                      sys.stdout.write('\x1b[2K')                                                                                   
                                      sys.stdout.write('\x1b[1A')
@@ -481,7 +481,7 @@ class Plain_Hash :
                                              exit()
                                       print(B+'[*] '+W+B+'Try Password       : '+W,P+secrit); print(B+'[*] '+W+R+'Try Hash sha3_224  : ',hash_password+W)\
                                       ;print(B+'[*] '+W+Y+'Try Hash sha224    : ',hash_password1+W);print(B+'[*] '+W+R+'Password Count     : '+W,P+str(count)+W)
-                                      time.sleep(0.15)                           
+                                      time.sleep(0.1)                           
                                       sys.stdout.write('\x1b[1A')
                                       sys.stdout.write('\x1b[2K')                                                                                   
                                       sys.stdout.write('\x1b[1A')
