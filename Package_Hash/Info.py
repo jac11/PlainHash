@@ -20,13 +20,24 @@ class Info:
              print ('[*] SHA_256         [*] SHA3_256')
              print ('[*] SHA_384         [*] SHA3_384   ')
              print ('[*] SHA_512         [*] SHA3_512')  
-             print ('[*] BLAKE2b         [*] BLAKE2c'+W+'\n')            
+             print ('[*] BLAKE2b         [*] BLAKE2s'+W+'\n')                      
              print (P+'[+] With non-Crypto Hsah Copy String Hash  Into File') 
              print ('[+] Same Like : 5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9')
              print ('[*] then Use -r Option or --read To give File Path' )
-             print ('[+] Example : ./PlainHash.py - r /home/hash.txt -w /home/wordlist')
+             print ('[+] Example : ./PlainHash.py -r /home/hash.txt -w /home/wordlist')
              print ('[+] or Use -H with Hash String')
-             print ('[+] Example : ./PlainHash.py -H 5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9 -w /home/wordlist'+W+'\n')               
+             print ('[+] Example : ./PlainHash.py -H 5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9 -w /home/wordlist'+W+'\n') 
+             print (Y+'[*] Hash Message Authentication Code "HMAC" :','\n','*'*20,'\n')
+             print ('[*] HMAC-MD5             [*] HMAC-SHA1  ')    
+             print ('[*] HMAC-SHA_224         [*] HMAC-SHA3_224')
+             print ('[*] HMAC-SHA_256         [*] HMAC-SHA3_256')
+             print ('[*] HMAC-SHA_384         [*] HMAC-SHA3_384   ')
+             print ('[*] HMAC-SHA_512         [*] HMAC-SHA3_512')  
+             print ('[*] HMAC-BLAKE2b         [*] HMAC-BLAKE2s'+W+'\n') 
+             print (P+'[+] With HMAC Hash Copy String Hash  Into File with the key' ) 
+             print ('[+] Same Like : 5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9:hashkey')
+             print ('[*] then Use -r Option or --read To give File Path' )
+             print ('[+] Example : ./PlainHash.py -r /home/hash.txt -w /home/wordlist'+W)             
              print (Y+'='*35,'\n\n','[*] Salt Hash Support :','\n',('*'*25),'\n')
              print ('[*] MD5-CRYPT        [*] SHA1-CRYPT  ')
              print ('[*] SHA256-CRYPT     [*] SHA512-CRYPT  ')
@@ -50,4 +61,7 @@ class Info:
     print_info()
 if __name =='__main__':
     Info()     
+    
+ 
+ 
     
