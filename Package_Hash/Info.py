@@ -27,7 +27,7 @@ class Info:
              print ('[+] Example : ./PlainHash.py -r /home/hash.txt -w /home/wordlist')
              print ('[+] or Use -H with Hash String')
              print ('[+] Example : ./PlainHash.py -H 5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9 -w /home/wordlist'+W+'\n') 
-             print (Y+'[*] Hash Message Authentication Code "HMAC" :','\n','*'*20,'\n')
+             print (Y+'[*] Hash Message Authentication Code "HMAC" :','\n','*'*45,'\n')
              print ('[*] HMAC-MD5             [*] HMAC-SHA1  ')    
              print ('[*] HMAC-SHA_224         [*] HMAC-SHA3_224')
              print ('[*] HMAC-SHA_256         [*] HMAC-SHA3_256')
