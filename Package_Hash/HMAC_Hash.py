@@ -434,7 +434,7 @@ class HMAC_HASH :
                                 time.sleep(1)
                                 print (B+'[*] '+W+Y+'Hash  ID  : HMAC-SHA_224  '+W)
                                 time.sleep(1)
-                                print (B+'[*] '+W+Y+'Hash  Key : '+W,+self.re_Hash_Key+W)  
+                                print (B+'[*] '+W+Y+'Hash  Key : '+W,P+self.re_Hash_Key+W)  
                                 time.sleep(1) 
                                 print((B+'*'*30+W),'\n',B+'[*] '+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                                 time.sleep(2)
