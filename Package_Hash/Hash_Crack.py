@@ -512,9 +512,14 @@ class Plain_Hash :
                      from Package_Hash.Linux_Hash import Linux_Hash
                      run = Linux_Hash()
                      exit()  
-                elif "$" not in self.input_value and ':' in self.input_value :
+                elif "$" not in self.input_value and len( self.input_value)==int(65) :
                      from Package_Hash.Win_NTLM import Win_Hash
-                     run = Win_Hash()                                        
+                     run = Win_Hash()   
+                     exit()
+                elif "$" not in self.input_value and ':' in self.input_value:
+                     from Package_Hash.HMAC_Hash import HMAC_HASH       
+                     run = HMAC_HASH()  
+                     exit()                        
                 else :
                    print(Y+'\n[*] Hash-Identifier\n',("*"*20),'\n') 
                    print(P+'[*] Input Hash Not In Our Database '+W)
