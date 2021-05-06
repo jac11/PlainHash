@@ -17,6 +17,16 @@
 * SHA512-CRYPT
 ### Windows-Hash
 * Windows-NTLM-V1 MD4 Encode[UTF-16LE]
+### Hash Message Authentication Code "HMAC" : 
+ 
+* HMAC-MD5       - HMAC-SHA1  
+* HMAC-SHA_224   - HMAC-SHA3_224
+* HMAC-SHA_256   - HMAC-SHA3_256
+* HMAC-SHA_384   - HMAC-SHA3_384   
+* HMAC-SHA_512   - HMAC-SHA3_512
+* HMAC-BLAKE2b   - HMAC-BLAKE2s
+
+
 ## How to use :
 * git clone https://github.com/jac11/PlainHash
 * cd PlainHash/
