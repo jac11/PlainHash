@@ -5,7 +5,7 @@
 * plainHash script help to  crack hash by using wordlist
 * PlainHash use Secure hashes and message digests 'hashlib'
 * PlainHash use for salt hash 'crypt' 
-* user -i info or --info info for more information
+
 ##  Hash Support : 
 * MD5  - SHA_1 - SHA_256
 * SHA3_384 - BLAKE2c - SHA_3_512
@@ -34,6 +34,7 @@
 * to check all  option open help menu by typing ./PlainHash.py -h or --help
 * you can use input hash Example: ./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist
 * or you can use as file input ./PlainHash.py -r hash.txt -w wordlist
+* use ./PlainHash.py  -i info  or ./PlainHash.py  --info info for more information
 ##  [ help menu overview ] 
  <img src = "images/5.png"><img src = "images/8.png"><img src = "images/9.png" >
   
