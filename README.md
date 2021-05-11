@@ -14,7 +14,7 @@
 ### Salt Hash Support:
 * MD5-CRYPT  - BCRYPT-[Y]
 * SHA1-CRYPT - SHA256-CRYPT
-* SHA512-CRYPT
+* SHA512-CRYPT  - bcrypt-2y
 ### Windows-Hash
 * Windows-NTLM-V1 MD4 Encode[UTF-16LE]
 ### Hash Message Authentication Code "HMAC" : 
