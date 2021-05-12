@@ -128,7 +128,8 @@ class HMAC_HASH :
                             sys.stdout.write('\x1b[2K')  
                             sys.stdout.write('\x1b[1A')
                             sys.stdout.write('\x1b[2K')
-                            
+                            sys.stdout.write('\x1b[1A')
+                            sys.stdout.write('\x1b[2K')
    
                             count  +=1
                             count1 +=1
@@ -188,11 +189,13 @@ class HMAC_HASH :
                                   exit()
                                print(B+'[*] '+W+R+'Try Password    : '+W,R+secrit+W);print(B+'[*] '+W+R+'Try Hash        : '+W,B+hash_password+W)\
                                ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)\
-                               ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)\
+                               ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)\
                                ;print('           ',B+('='*25)+W)
                                time.sleep(0.1)                           
                                sys.stdout.write('\x1b[1A')
                                sys.stdout.write('\x1b[2K')                                                     
+                               sys.stdout.write('\x1b[1A')
+                               sys.stdout.write('\x1b[2K')
                                sys.stdout.write('\x1b[1A')
                                sys.stdout.write('\x1b[2K')
                                sys.stdout.write('\x1b[1A')
@@ -292,7 +295,9 @@ class HMAC_HASH :
                                       sys.stdout.write('\x1b[1A')
                                       sys.stdout.write('\x1b[2K')  
                                       sys.stdout.write('\x1b[1A')
-                                      sys.stdout.write('\x1b[2K')                                                                                                      
+                                      sys.stdout.write('\x1b[2K') 
+                                      sys.stdout.write('\x1b[1A')
+                                      sys.stdout.write('\x1b[2K')                                                                                                     
                                       count  +=1 
                                       count1 +=1
                                   else:                        	
@@ -606,7 +611,9 @@ class HMAC_HASH :
                                       sys.stdout.write('\x1b[1A')
                                       sys.stdout.write('\x1b[2K')  
                                       sys.stdout.write('\x1b[1A')
-                                      sys.stdout.write('\x1b[2K')                                                                                                         
+                                      sys.stdout.write('\x1b[2K')   
+                                      sys.stdout.write('\x1b[1A')
+                                      sys.stdout.write('\x1b[2K')                                                                                                       
                                       count +=1 
                                       count1 +=1
                                   else:                        	
