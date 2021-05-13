@@ -7,6 +7,7 @@
 * PlainHash use for salt hash 'crypt' 
 
 ##  Hash Support : 
+* MD4
 * MD5  - SHA_1 - SHA_256
 * SHA3_384 - BLAKE2c - SHA_3_512
 * SHA_512  - BLAKE2b - BLAKE2b 
