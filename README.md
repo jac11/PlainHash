@@ -36,7 +36,7 @@
 * you can use input hash Example: ./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist
 * or you can use as file input ./PlainHash.py -r hash.txt -w wordlist
 * use ./PlainHash.py  -i info  or ./PlainHash.py  --info info for more information
-* to set color of the PlaimHash off use --color off or -c off Example: ./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist -c off
+* to set color of the PlaimHash off use --color off or -c off    Example: ./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist -c off
 * or you can use as file input ./PlainHash.py -r hash.txt -w wordlist
 ##  [ help menu overview ] 
  <img src = "images/5.png"><img src = "images/8.png"><img src = "images/9.png" >
