@@ -21,7 +21,29 @@ Y='\033[1;33m'
  
 class Win_Hash:
       def __init__(self):
+
+          global W
+          global R
+          global G
+          global O
+          global B
+          global P
+          global Y 
+
           self.control()
+          if self.args.color  and 'off' in sys.argv:
+                W=''     
+                R=''    
+                G=''  
+                O=''     
+                B=''    
+                P=''   
+                Y=''
+          else:
+              if self.args.color  and 'off' not in  sys.argv :
+                 print (P+'[*] error: argument -c/--color: expected argument off '+W)
+                 exit() 
+
           self.Hash_id()
           self.Hash_NTLM()
           
@@ -127,7 +149,8 @@ class Win_Hash:
       def control(self): 
           
            parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]") 
-           parser.add_argument("-w","--wordlist" , metavar='' , action=None ,required=True,help ="wordlist of passwords") 
+           parser.add_argument("-w","--wordlist" , metavar='' , action=None ,required=True,help ="wordlist of passwords")
+           parser.add_argument("-c","--color" , metavar='' , action=None ,default=False,help ="set color display off")  
            parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input \
            Example: ./PlainHash.py -r hash.txt -w wordlist") 
            self.args = parser.parse_args()     
