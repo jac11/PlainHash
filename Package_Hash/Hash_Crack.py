@@ -8,7 +8,6 @@ import os
 
 from Package_Hash.Banner import Banner
 
-
 W='\033[0m'     
 R='\033[31m'    
 G='\033[0;32m'  
@@ -36,9 +35,20 @@ class Plain_Hash :
          self.SHA3_224  = int(56)
          self.SHA_256   = int(64)        
          self.SHA3_384  = int(96)
-         self.SHA_3_512 = int(128)
-         
+         self.SHA_3_512 = int(128)         
          self.control()
+         if self.args.color  and 'off' in sys.argv:
+            W=''     
+            R=''    
+            G=''  
+            O=''     
+            B=''    
+            P=''   
+            Y=''
+         else:
+              if self.args.color  and 'off' not in  sys.argv :
+                 print (P+'[*] error: argument -c/--color: expected argument off '+W)
+                 exit()
          self.input_hash() 
          try:         
             if self.args.info and sys.argv[2]=='info':
@@ -667,7 +677,8 @@ class Plain_Hash :
         parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")      
         parser.add_argument("-H",'--hash' , metavar='' , action=None  ,help ="Hash string ") 
         parser.add_argument("-w","--wordlist" , metavar='' , action=None ,help ="wordlist of passwords") 
-        parser.add_argument("-i","--info" , metavar='' , action=None ,help ="Show the Hash Supporting  and Information")        
+        parser.add_argument("-i","--info" , metavar='' , action=None ,help ="Show the Hash Supporting  and Information")   
+        parser.add_argument("-c","--color" , metavar='' , action=None ,default=False,help ="set color display off")      
         parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input") 
         
         self.args = parser.parse_args()        
