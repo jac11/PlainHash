@@ -10,7 +10,7 @@ import os
 import re 
 from Package_Hash.Banner import Banner
 from Package_Hash.Hash_Crack import *
-count ,second, minute,hours ,count1 = 0
+
 
 W='\033[0m'     
 R='\033[31m'    
@@ -30,20 +30,9 @@ class Linux_Hash:
             global O
             global B
             global P
-            global Y             
+            global Y 
+            
             self.control() 
-            if self.args.color  and 'off' in sys.argv:
-                W=''     
-                R=''    
-                G=''  
-                O=''     
-                B=''    
-                P=''   
-                Y=''
-            else:
-                 if self.args.color  and 'off' not in  sys.argv :
-                   print (P+'[*] error: argument -c/--color: expected argument off '+W)
-                   exit() 
             self.input_hash()                     
         def input_hash(self):
             if self.args.read:
@@ -84,7 +73,11 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value+W )
-
+               count  = 0                            
+               second = 0    
+               minute = 0    
+               hours  = 0   
+               count1 = 0
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type)
                    if (count1 == 10): 
@@ -148,7 +141,11 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:35],'\n','                   : ', self.input_value[35:] +W)
-
+               count  = 0                            
+               second = 0    
+               minute = 0    
+               hours  = 0   
+               count1 = 0
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type)
                    if (count1 == 8): 
@@ -221,7 +218,11 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:35],'\n','                   : ', self.input_value[35:] +W)
-
+               count  = 0                            
+               second = 0    
+               minute = 0    
+               hours  = 0   
+               count1 = 0
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type)
                    if (count1 == 22): 
@@ -291,7 +292,11 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[52:] +W)
-
+               count  = 0                            
+               second = 0    
+               minute = 0    
+               hours  = 0   
+               count1 = 0
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type )
                    if (count1 == 10): 
@@ -367,10 +372,14 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[52:] +W)
-
+               count  = 0                            
+               second = 0    
+               minute = 0    
+               hours  = 0   
+               count1 = 0
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type )
-                   if (count1 == 5): 
+                   if (count1 == 10): 
                        count1 =0                                                 
                        second+=1                                    
                    if(second == 60):    
@@ -440,7 +449,11 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[52:] +W)
-
+               count  = 0                            
+               second = 0    
+               minute = 0    
+               hours  = 0   
+               count1 = 0
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type)
                    if (count1 == 10): 
@@ -492,7 +505,6 @@ class Linux_Hash:
         def control(self):
            parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")      
            parser.add_argument("-w","--wordlist" , metavar='' , action=None ,required=True,help ="wordlist of passwords") 
-           parser.add_argument("-c","--color" , metavar='' , action=None ,default=False,help ="set color display off") 
            parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input" ) 
            self.args = parser.parse_args()     
            if len(sys.argv)!=1 :
