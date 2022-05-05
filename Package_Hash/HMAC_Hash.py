@@ -9,7 +9,7 @@ import hashlib
 import argparse
 from Package_Hash.Banner import Banner
 
-
+count ,second, minute,hours ,count1 = 0
 W='\033[0m'     
 R='\033[31m'    
 G='\033[0;32m'  
@@ -99,11 +99,7 @@ class HMAC_HASH :
                         except FileNotFoundError :
                             print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                             exit()  
-                        count  = 0
-                        second = 0    
-                        minute = 0    
-                        hours  = 0   
-                        count1 = 0 
+
                         for secrit in passwords :
                             hash_password0 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.md5).hexdigest()
                             if (count1 == 10): 
@@ -115,7 +111,7 @@ class HMAC_HASH :
                                minute+=1    
                             if(minute == 60):    
                                minute = 0    
-                               hour+=1; 
+                               hours+=1; 
                             if hash_password0 == self.input_value  : 
                                print(B+'[*] '+W+Y+'Same Hash Match : '+W,B+hash_password0+W)
                                print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
@@ -175,11 +171,7 @@ class HMAC_HASH :
                            except FileNotFoundError :
                              print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                              exit()  
-                           count  = 0
-                           second = 0    
-                           minute = 0    
-                           hours  = 0   
-                           count1 = 0 
+
                            for secrit in passwords :
                                hash_password = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha1).hexdigest()
                                if (count1 == 10): 
@@ -190,7 +182,7 @@ class HMAC_HASH :
                                    minute+=1    
                                if(minute == 60):    
                                    minute = 0    
-                                   hour+=1; 
+                                   hours+=1; 
                                if hash_password == self.input_value : 
                                   print(B+'[*] '+W+Y+'Same Hash Match : '+W,B+hash_password+W)
                                   print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
@@ -249,11 +241,7 @@ class HMAC_HASH :
                                   except FileNotFoundError :
                                       print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                                       exit()  
-                                  count  = 0
-                                  second = 0    
-                                  minute = 0    
-                                  hours  = 0   
-                                  count1 = 0  
+ 
                                   for secrit in passwords :
                                       hash_password =  hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha384).hexdigest()
                                       hash_password1 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha3_384).hexdigest()
@@ -265,7 +253,7 @@ class HMAC_HASH :
                                           minute+=1    
                                       if(minute == 60):    
                                           minute = 0    
-                                          hour+=1; 
+                                          hours+=1; 
                                       if hash_password == self.input_value :
                                              print(B+'[*] '+W+R+'Same Hash Match    : ',hash_password[:48])\
                                              ;print('                       : ',hash_password[48:]+W)                                              
@@ -348,11 +336,7 @@ class HMAC_HASH :
                                except FileNotFoundError :
                                   print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                                   exit()  
-                               count  = 0
-                               second = 0    
-                               minute = 0    
-                               hours  = 0   
-                               count1 = 0   
+
                                for secrit in passwords :
                                   hash_password  = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha256).hexdigest()                                  
                                   hash_password1 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(), hashlib.sha3_256).hexdigest()
@@ -365,7 +349,7 @@ class HMAC_HASH :
                                       minute+=1    
                                   if(minute == 60):    
                                        minute = 0    
-                                       hour+=1;
+                                       hours+=1;
                                   if hash_password == self.input_value :
                                      print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password2[:32])\
                                      ;print('                       : ',hash_password2[32:]+W)  
@@ -463,11 +447,7 @@ class HMAC_HASH :
                                  except FileNotFoundError :
                                     print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                                     exit()                        
-                                 count  = 0
-                                 second = 0    
-                                 minute = 0    
-                                 hours  = 0   
-                                 count1 = 0   
+  
                                  for secrit in passwords :
                                      hash_password  = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha3_512).hexdigest() 
                                      hash_password1 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.blake2b).hexdigest()
@@ -480,7 +460,7 @@ class HMAC_HASH :
                                           minute+=1    
                                      if(minute == 60):    
                                           minute = 0    
-                                          hour+=1;
+                                          hours+=1;
                                      if hash_password == self.input_value :
                                           print(B+'[*] '+W+R+'Same Hash Match    : '+W,R+hash_password[:64])\
                                           ;print('                       : ',hash_password[64:]+W)  
@@ -575,11 +555,7 @@ class HMAC_HASH :
                                   except FileNotFoundError :
                                       print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                                       exit()  
-                                  count  = 0
-                                  second = 0    
-                                  minute = 0    
-                                  hours  = 0   
-                                  count1 = 0   
+ 
                                   for secrit in passwords :
                                       hash_password  =  hmac.new(self.re_Hash_Key.encode(),secrit.encode(), hashlib.sha3_224).hexdigest()
                                       hash_password1 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(), hashlib.sha224).hexdigest()
@@ -591,7 +567,7 @@ class HMAC_HASH :
                                           minute+=1    
                                       if(minute == 60):    
                                           minute = 0    
-                                          hour+=1;
+                                          hours+=1;
                                       if hash_password == self.input_value :
                                              print(B+'[*] '+W+R+'Same Hash Match    : ',hash_password+W)  
                                              print(B+'[*] '+W+B+'Hash ID            :  HMAC-SHA3_224 '+W) 

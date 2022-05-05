@@ -10,7 +10,7 @@ import os
 import re 
 from Package_Hash.Banner import Banner
 from Package_Hash.Hash_Crack import *
-
+count ,second, minute,hours ,count1 = 0
 
 W='\033[0m'     
 R='\033[31m'    
@@ -84,11 +84,7 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value+W )
-               count  = 0                            
-               second = 0    
-               minute = 0    
-               hours  = 0   
-               count1 = 0
+
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type)
                    if (count1 == 10): 
@@ -99,7 +95,7 @@ class Linux_Hash:
                        minute+=1    
                    if(minute == 60):    
                        minute = 0    
-                       hour+=1;
+                       hours+=1;
                    if crypt_Hash == self.input_value :
                          print(B+'[*] '+W+Y+'Same Hash Match : '+W,R+crypt_Hash+W)
                          print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
@@ -152,11 +148,7 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:35],'\n','                   : ', self.input_value[35:] +W)
-               count  = 0                            
-               second = 0    
-               minute = 0    
-               hours  = 0   
-               count1 = 0
+
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type)
                    if (count1 == 8): 
@@ -167,7 +159,7 @@ class Linux_Hash:
                        minute+=1    
                    if(minute == 60):    
                        minute = 0    
-                       hour+=1;
+                       hours+=1;
                    if crypt_Hash == self.input_value :
                          print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:35])\
                          ;print('                    : ',crypt_Hash[35:]+W) 
@@ -229,11 +221,7 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:35],'\n','                   : ', self.input_value[35:] +W)
-               count  = 0                            
-               second = 0    
-               minute = 0    
-               hours  = 0   
-               count1 = 0
+
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type)
                    if (count1 == 22): 
@@ -244,7 +232,7 @@ class Linux_Hash:
                        minute+=1    
                    if(minute == 60):    
                        minute = 0    
-                       hour+=1;
+                       hours+=1;
                    if crypt_Hash == self.input_value :
                          print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:35])\
                          ;print('                    : ',crypt_Hash[35:]+W) 
@@ -303,11 +291,7 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[52:] +W)
-               count  = 0                            
-               second = 0    
-               minute = 0    
-               hours  = 0   
-               count1 = 0
+
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type )
                    if (count1 == 10): 
@@ -318,7 +302,7 @@ class Linux_Hash:
                        minute+=1    
                    if(minute == 60):    
                        minute = 0    
-                       hour+=1;                
+                       hours+=1;                
                    if crypt_Hash == self.input_value :
                          print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:52])\
                          ;print('                    : ',crypt_Hash[52:]+W,)  
@@ -383,11 +367,7 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[52:] +W)
-               count  = 0                            
-               second = 0    
-               minute = 0    
-               hours  = 0   
-               count1 = 0
+
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type )
                    if (count1 == 5): 
@@ -398,7 +378,7 @@ class Linux_Hash:
                        minute+=1    
                    if(minute == 60):    
                        minute = 0    
-                       hour+=1;                
+                       hours+=1;                
                    if crypt_Hash == self.input_value :
                          print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:52])\
                          ;print('                    : ',crypt_Hash[52:]+W,)  
@@ -460,11 +440,7 @@ class Linux_Hash:
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
                print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:52],'\n','                   : ', self.input_value[52:] +W)
-               count  = 0                            
-               second = 0    
-               minute = 0    
-               hours  = 0   
-               count1 = 0
+
                for secrit in passwords :
                    crypt_Hash = crypt.crypt(secrit,hash_type)
                    if (count1 == 10): 
@@ -475,7 +451,7 @@ class Linux_Hash:
                        minute+=1    
                    if(minute == 60):    
                        minute = 0    
-                       hour+=1;                
+                       hours+=1;                
                    if crypt_Hash == self.input_value :
                          print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:52])\
                          ;print('                    : ',crypt_Hash[52:]+W,'\n')  

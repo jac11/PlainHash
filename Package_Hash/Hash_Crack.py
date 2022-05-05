@@ -8,6 +8,8 @@ import os
 
 from Package_Hash.Banner import Banner
 
+count ,second, minute,hours ,count1 = 0
+
 W='\033[0m'     
 R='\033[31m'    
 G='\033[0;32m'  
@@ -107,11 +109,7 @@ class Plain_Hash :
                         except FileNotFoundError :
                             print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                             exit()  
-                        count  = 0
-                        second = 0    
-                        minute = 0    
-                        hours  = 0   
-                        count1 = 0 
+                     
                         for secrit in passwords :
                             hash_password0 = hashlib.new('md4',secrit.encode()).hexdigest()
                             hash_password = hashlib.md5(secrit.encode()).hexdigest()
@@ -126,7 +124,7 @@ class Plain_Hash :
                                minute+=1    
                             if(minute == 60):    
                                minute = 0    
-                               hour+=1;  
+                               hours+=1;  
                             if hash_password0 == self.input_value  : 
                             
                                print(B+'[*] '+W+Y+'Same Hash Match : '+W,B+hash_password0+W)
@@ -204,11 +202,6 @@ class Plain_Hash :
                            except FileNotFoundError :
                              print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                              exit()  
-                           count  = 0                            
-                           second = 0    
-                           minute = 0    
-                           hours  = 0   
-                           count1 = 0 
                            for secrit in passwords :
                                hash_password = hashlib.sha1(secrit.encode()).hexdigest()
                                if (count1 == 10): 
@@ -219,7 +212,7 @@ class Plain_Hash :
                                    minute+=1    
                                if(minute == 60):    
                                    minute = 0    
-                                   hour+=1; 
+                                   hours+=1; 
                                if hash_password == self.input_value : 
                                   print(B+'[*] '+W+Y+'Same Hash Match : '+W,B+hash_password+W)
                                   print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
@@ -274,12 +267,7 @@ class Plain_Hash :
                                      passwords = self.line.split()
                                   except FileNotFoundError :
                                       print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
-                                      exit()  
-                                  count  = 0                            
-                                  second = 0    
-                                  minute = 0    
-                                  hours  = 0   
-                                  count1 = 0   
+                                      exit()   
                                   for secrit in passwords :
                                       hash_password = hashlib.sha384(secrit.encode()).hexdigest()
                                       hash_password1 = hashlib.sha3_384(secrit.encode()).hexdigest()
@@ -291,7 +279,7 @@ class Plain_Hash :
                                           minute+=1    
                                       if(minute == 60):    
                                           minute = 0    
-                                          hour+=1;
+                                          hours+=1;
                                       if hash_password == self.input_value :
                                              print(B+'[*] '+W+R+'Same Hash Match    : ',hash_password[:48])\
                                              ;print('                       : ',hash_password[48:]+W)                                              
@@ -369,11 +357,7 @@ class Plain_Hash :
                                except FileNotFoundError :
                                   print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                                   exit()  
-                               count  = 0                            
-                               second = 0    
-                               minute = 0    
-                               hours  = 0   
-                               count1 = 0   
+  
                                for secrit in passwords :
                                   hash_password  = hashlib.sha256(secrit.encode()).hexdigest()
                                   hash_password1 = hashlib.sha3_256(secrit.encode()).hexdigest()
@@ -386,7 +370,7 @@ class Plain_Hash :
                                        minute+=1    
                                   if(minute == 60):    
                                        minute = 0    
-                                       hour+=1;
+                                       hours+=1;
                                   if hash_password == self.input_value :
                                      print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password2[:32])\
                                      ;print('                       : ',hash_password2[32:]+W)  
@@ -483,12 +467,7 @@ class Plain_Hash :
                                     passwords = self.line.split()
                                  except FileNotFoundError :
                                     print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
-                                    exit()                        
-                                 count  = 0                            
-                                 second = 0    
-                                 minute = 0    
-                                 hours  = 0   
-                                 count1 = 0    
+                                    exit()                          
                                  for secrit in passwords :
                                      hash_password  = hashlib.sha3_512(secrit.encode()).hexdigest()
                                      hash_password1 = hashlib.blake2b(secrit.encode()).hexdigest()
@@ -501,7 +480,7 @@ class Plain_Hash :
                                          minute+=1    
                                      if(minute == 60):    
                                          minute = 0    
-                                         hour+=1;
+                                         hours+=1;
                                      if hash_password == self.input_value :
                                           print(B+'[*] '+W+R+'Same Hash Match    : '+W,R+hash_password[:64])\
                                           ;print('                       : ',hash_password[64:]+W)  
@@ -593,12 +572,7 @@ class Plain_Hash :
                                      passwords = self.line.split()
                                   except FileNotFoundError :
                                       print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
-                                      exit()  
-                                  count  = 0                            
-                                  second = 0    
-                                  minute = 0    
-                                  hours  = 0   
-                                  count1 = 0    
+                                      exit()     
                                   for secrit in passwords :
                                       hash_password = hashlib.sha3_224(secrit.encode()).hexdigest()
                                       hash_password1 = hashlib.sha224(secrit.encode()).hexdigest()
@@ -610,7 +584,7 @@ class Plain_Hash :
                                           minute+=1    
                                       if(minute == 60):    
                                           minute = 0    
-                                          hour+=1;
+                                          hours+=1;
                                       if hash_password == self.input_value :
                                              print(B+'[*] '+W+R+'Same Hash Match    : ',hash_password+W)  
                                              print(B+'[*] '+W+B+'Hash ID            :  SHA3_224 '+W) 

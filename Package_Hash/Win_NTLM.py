@@ -8,7 +8,7 @@ import hashlib
 import argparse
 #from Package_Hash.Hash_Crack import *
 from Package_Hash.Banner import Banner
-
+count ,second, minute,hours ,count1 = 0
 
 W='\033[0m'     
 R='\033[31m'    
@@ -92,11 +92,7 @@ class Win_Hash:
                         except FileNotFoundError :
                             print(Y+'[*] Wordlist File ','{}'.format(self.path),W+B+' Not Found'+W) 
                             exit()        
-                        count  = 0
-                        second = 0    
-                        minute = 0    
-                        hours  = 0   
-                        count1 = 0
+
                         for secrit in passwords :                            
                             Hash_LM = str(re.findall('\w+:',self.input_value)).replace('[','').replace(']','').replace("'",'')
                             Hash_NTLM = str(re.findall(':\w+',self.input_value)).replace(':','').replace('[','').replace(']','').replace("'",'')
@@ -110,7 +106,7 @@ class Win_Hash:
                                minute+=1    
                             if(minute == 60):    
                                minute = 0    
-                               hour+=1;  
+                               hours+=1;  
                             if hash_password == Hash_NTLM : 
                                print(B+'[*] '+W+R+'Same Hash Match : ',R+Hash_LM+W)\
                                ;print(R+'                    : ',hash_password+W)
