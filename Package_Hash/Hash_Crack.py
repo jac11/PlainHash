@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-
+# pip install pycryptodome
 import os
 import sys
 import hashlib
 import argparse
 import timeit,time
+from Crypto.Hash import MD4
 from Package_Hash.Banner import Banner
 
 W='\033[0m'     
@@ -110,9 +111,9 @@ class Plain_Hash :
                         start = timeit.default_timer()
                         for secrit in passwords :
                             
-                            hash_password0 = hashlib.new('md4',secrit.encode()).hexdigest()
-                            hash_password = hashlib.md5(secrit.encode()).hexdigest()
-                            hash_password1 = hashlib.new('md4',secrit.encode('utf-16le')).hexdigest()
+                            hash_password0 = MD4.new(secrit.encode('utf-8')).hexdigest()         # hashlib.new('md4',secrit.encode()).hexdigest()                          
+                            hash_password  = hashlib.md5(secrit.encode()).hexdigest()
+                            hash_password1 = MD4.new(secrit.encode('utf-16le')).hexdigest()      #hashlib.new('md4',secrit.encode('utf-16le')).hexdigest()
                             stop = timeit.default_timer()
                             sec = stop  - start
                             fix_time = time.gmtime(sec)
@@ -267,7 +268,7 @@ class Plain_Hash :
                                              print(B+'[*] '+W+B+'Hash ID            :  SHA_384 '+W) 
                                              print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                              print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W) 
-                                             print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
+                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                              print('         ',B+('='*25)+W) 
                                              exit()                         
                                       elif hash_password1 ==self.input_value :
@@ -276,7 +277,7 @@ class Plain_Hash :
                                              print(B+'[*] '+W+B+'Hash ID            :  SHA3_384  '+W) 
                                              print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                              print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                             print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
+                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                              print('         ',B+('='*25)+W)
                                              exit()
                                       print(B+'[*] '+W+R+'Try Hash sha_384   : ',hash_password[:48])\
@@ -352,7 +353,7 @@ class Plain_Hash :
                                      print(B+'[*] '+W+B+'Hash ID            :'+W+R+'  sha256 '+W) 
                                      print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                      print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                     print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
+                                     print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                      print('         ',B+('='*25)+W)
                                      exit()                           
                                   elif hash_password1 ==self.input_value :
@@ -361,7 +362,7 @@ class Plain_Hash :
                                        print(B+'[*] '+W+B+'Hash ID            :'+W+R+'  SHA3_256 '+W) 
                                        print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                        print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)                              
-                                       print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
+                                       print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                        print('         ',B+('='*25)+W)
                                        exit()   
                                   elif hash_password2 ==self.input_value:
@@ -370,7 +371,7 @@ class Plain_Hash :
                                        print(B+'[*] '+W+Y+'Hash ID            :'+W+Y+'  BLAKE2S '+W) 
                                        print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                        print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                       print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
+                                       print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                        print('         ',B+('='*25)+W)
                                        exit()                                                                                              
                                   print(); print(B+'[*] '+W+R+'Try Hash sha256    : ',\
@@ -380,7 +381,7 @@ class Plain_Hash :
                                   ;print(B+'[*] '+W+B+'Try Hash BLAKE2S   : ',hash_password2[:32])\
                                   ;print('                       : ',hash_password2[32:]+W)\
                                   ;print(B+'[*] '+W+R+'Password Count     : ',P+str(count)+W)\
-                                  ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)\
+                                  ;print(B+'[*] '+W+P+'Time               '+W+R+' | '+W,O+result+W)\
                                   ;print('           ',B+('='*25)+W)                                   
                                   time.sleep(0.0001)                           
                                   sys.stdout.write('\x1b[1A')
@@ -454,7 +455,7 @@ class Plain_Hash :
                                           print(B+'[*] '+W+Y+'Hash ID            :  SHA3_512 '+W) 
                                           print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                           print(B+'[*] '+W+Y+'Password Count     : '+W,P+str(count)+W)
-                                          print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
+                                          print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                           print('         ',B+('='*25)+W)
                                           exit()                            
                                      elif hash_password1 ==self.input_value :
@@ -463,7 +464,7 @@ class Plain_Hash :
                                           print(B+'[*] '+W+B+'Hash ID            :  BLAKE2b '+W) 
                                           print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                           print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                          print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
+                                          print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                           print('         ',B+('='*25)+W)
                                           exit()    
                                      elif hash_password2 ==self.input_value:
@@ -471,8 +472,8 @@ class Plain_Hash :
                                           ;print('                       : ',hash_password2[64:]+W)
                                           print(B+'[*] '+W+Y+'Hash ID            :  SHA512  '+W) 
                                           print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
-                                          print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                          print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
+                                          print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
+                                          print(B+'[*] '+W+P+'Time           '+W+R+'                  | '+W,O+result+W)
                                           print('         ',B+('='*25)+W)
                                           exit()                                            
                                      print(); print(B+'[*] '+W+R+'Try Hash sha3_512  : ',\
@@ -482,7 +483,7 @@ class Plain_Hash :
                                      ;print(B+'[*] '+W+B+'Try Hash sha512    : ',hash_password2[:64])\
                                      ;print('                       : ',hash_password2[64:]+W)\
                                      ;print(B+'[*] '+W+R+'Password Count     : ',P+str(count)+W)\
-                                     ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)\
+                                     ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)\
                                      ;print('           ',B+('='*25)+W) 
                                      time.sleep(0.0001)                           
                                      sys.stdout.write('\x1b[1A')
@@ -550,7 +551,7 @@ class Plain_Hash :
                                              print(B+'[*] '+W+B+'Hash ID            :  SHA3_224 '+W) 
                                              print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                              print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)  
-                                             print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
+                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                              print('            ',B+('='*25)+W)
                                              exit()                         
                                       elif hash_password1 ==self.input_value :
@@ -558,7 +559,7 @@ class Plain_Hash :
                                              print(B+'[*] '+W+B+'Hash ID            :  SHA224  '+W) 
                                              print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                              print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                             print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
+                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                              print('            ',B+('='*25)+W)
                                              exit()
                                       print(B+'[*] '+W+R+'Try Hash sha3_224  : ',hash_password+W)\
