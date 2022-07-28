@@ -3,10 +3,10 @@
 import re
 import os
 import sys
-import time
+import timeit,time
 import hashlib
 import argparse
-#from Package_Hash.Hash_Crack import *
+from Crypto.Hash import MD4
 from Package_Hash.Banner import Banner
 
 
@@ -71,38 +71,29 @@ class Win_Hash:
                             print(Y+'[*] Wordlist File ','{}'.format(self.path),W+B+' Not Found'+W) 
                             exit()        
                         count  = 0
-                        second = 0    
-                        minute = 0    
-                        hours  = 0   
-                        count1 = 0
+                        start = timeit.default_timer()
                         for secrit in passwords :                            
                             Hash_LM = str(re.findall('\w+:',self.input_value)).replace('[','').replace(']','').replace("'",'')
                             Hash_NTLM = str(re.findall(':\w+',self.input_value)).replace(':','').replace('[','').replace(']','').replace("'",'')
-                            hash_password = hashlib.new('md4',secrit.encode('utf-16le')).hexdigest()
-                            if (count1 == 10): 
-                               count1 =0                                                 
-                               second+=1  
-                               count_time =0  
-                            if(second == 60):    
-                               second = 0    
-                               minute+=1    
-                            if(minute == 60):    
-                               minute = 0    
-                               hours+=1;  
+                            hash_password = MD4.new(secrit.encode('utf-16le')).hexdigest()    #hashlib.new('md4',secrit.encode('utf-16le')).hexdigest() 
+                            stop = timeit.default_timer()
+                            sec = stop  - start
+                            fix_time = time.gmtime(sec)
+                            result = time.strftime("%H:%M:%S",fix_time) 
                             if hash_password == Hash_NTLM : 
                                print(B+'[*] '+W+R+'Same Hash Match : ',R+Hash_LM+W)\
                                ;print(R+'                    : ',hash_password+W)
                                print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
                                print(B+'[*] '+W+Y+'Password Count  : '+W,R+str(count)+W) 
-                               print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                               print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
                                print('      ',B+('='*25)+W)                                                          
                                exit()
-                            print(B+'[*] '+W+R+'Try Password    : '+W,P+secrit+W);print(B+'[*]'+W+R+' Try Hash        : '+W,Y+Hash_LM+W)\
+                            print(B+'[*]'+W+R+' Try Hash        : '+W,Y+Hash_LM+W)\
                             ;print(R+'                    : ',R+hash_password+W)\
                             ;print(B+'[*] '+W+B+'Password Count  : '+W,P+str(count)+W)\
-                            ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)\
+                            ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)\
                             ;print('      ',B+('='*25)+W)                           
-                            time.sleep(0.1)                           
+                            time.sleep(0.0001)                           
                             sys.stdout.write('\x1b[1A')
                             sys.stdout.write('\x1b[2K')                                                       
                             sys.stdout.write('\x1b[1A')
@@ -113,10 +104,8 @@ class Win_Hash:
                             sys.stdout.write('\x1b[2K')  
                             sys.stdout.write('\x1b[1A')
                             sys.stdout.write('\x1b[2K')
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')
+
                             count  +=1 
-                            count1 +=1
                         else:  
                             print (B+'\n[*] Password Not Found','\n')
                             print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
