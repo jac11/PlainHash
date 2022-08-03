@@ -3,7 +3,7 @@
 import os
 import re
 import sys
-import time
+import timeit,time
 import hmac
 import hashlib
 import argparse
@@ -56,8 +56,8 @@ class HMAC_HASH :
                 try:
                    self.path= os.path.abspath(self.args.read)
                    self.list= open(self.path)             
-                   self.line_read =self.list.readline().rstrip().lower() 
-                   self.input_value = self.line_read
+                   self.line_read =self.list.readline().rstrip()
+                   self.input_value = self.line_read.strip()
                    self.hash_type = str(re.findall('\S+[:^]',  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()
                    self.re_Hash_Key  = str(re.findall('[:^]\S+',  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace(':','')
                    self.re_HasH = str(re.findall('\S+[:^]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace(':','') 
@@ -100,37 +100,25 @@ class HMAC_HASH :
                             print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                             exit()  
                         count  = 0
-                        second = 0    
-                        minute = 0    
-                        hours  = 0   
-                        count1 = 0 
+                        start = timeit.default_timer()
                         for secrit in passwords :
                             hash_password0 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.md5).hexdigest()
-                            if (count1 == 10): 
-                               count1 =0                                                 
-                               second+=1  
-                               count_time =0  
-                            if(second == 60):    
-                               second = 0    
-                               minute+=1    
-                            if(minute == 60):    
-                               minute = 0    
-                               hours+=1; 
+                            stop = timeit.default_timer()
+                            sec = stop  - start
+                            fix_time = time.gmtime(sec)
+                            result = time.strftime("%H:%M:%S",fix_time)
                             if hash_password0 == self.input_value  : 
                                print(B+'[*] '+W+Y+'Same Hash Match : '+W,B+hash_password0+W)
                                print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
                                print(B+'[*] '+W+Y+'Password Count  : '+W,P+str(count)+W)  
-                               print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                               print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
                                print('         ',B+('='*25)+W)                                                         
                                exit()                                                       
-
-                            print(B+'[*] '+W+P+'Try Password    : '+W,P+secrit+W)\
-                            ;print(B+'[*] '+W+R+'Try HMAC-MD5    : '+W,R+hash_password0+W)\
+                            print(B+'[*] '+W+R+'Try HMAC-MD5    : '+W,R+hash_password0+W)\
                             ;print(B+'[*] '+W+Y+'Password Count  : '+W,P+str(count)+W)\
-                            ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)\
+                            ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)\
                             ;print('           ',B+('='*25)+W)
-                            run_time = Time_count()
-                            time.sleep(0.1)                           
+                            time.sleep(0.0001)                           
                             sys.stdout.write('\x1b[1A')
                             sys.stdout.write('\x1b[2K')                                                       
                             sys.stdout.write('\x1b[1A')
@@ -139,11 +127,7 @@ class HMAC_HASH :
                             sys.stdout.write('\x1b[2K')  
                             sys.stdout.write('\x1b[1A')
                             sys.stdout.write('\x1b[2K')
-                            sys.stdout.write('\x1b[1A')
-                            sys.stdout.write('\x1b[2K')
-   
                             count  +=1
-                            count1 +=1
                         else:  
                             print (B+'\n[*] Password Not Found','\n')
                             print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
@@ -176,33 +160,25 @@ class HMAC_HASH :
                              print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                              exit()  
                            count  = 0
-                           second = 0    
-                           minute = 0    
-                           hours  = 0   
-                           count1 = 0 
+                           start = timeit.default_timer() 
                            for secrit in passwords :
                                hash_password = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha1).hexdigest()
-                               if (count1 == 10): 
-                                   count1 =0                                                 
-                                   second+=1   
-                               if(second == 60):    
-                                   second = 0    
-                                   minute+=1    
-                               if(minute == 60):    
-                                   minute = 0    
-                                   hours+=1; 
+                               stop = timeit.default_timer()
+                               sec = stop  - start
+                               fix_time = time.gmtime(sec)
+                               result = time.strftime("%H:%M:%S",fix_time) 
                                if hash_password == self.input_value : 
                                   print(B+'[*] '+W+Y+'Same Hash Match : '+W,B+hash_password+W)
                                   print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
                                   print(B+'[*] '+W+Y+'Password Count  : '+W,R+str(count)+W)
-                                  print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                  print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)
                                   print('         ',B+('='*25)+W)                                                                
                                   exit()
-                               print(B+'[*] '+W+R+'Try Password    : '+W,R+secrit+W);print(B+'[*] '+W+R+'Try Hash        : '+W,B+hash_password+W)\
+                               print(B+'[*] '+W+R+'Try Hash        : '+W,B+hash_password+W)\
                                ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)\
-                               ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)\
+                               ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)\
                                ;print('           ',B+('='*25)+W)
-                               time.sleep(0.1)                           
+                               time.sleep(0.0001)                           
                                sys.stdout.write('\x1b[1A')
                                sys.stdout.write('\x1b[2K')                                                     
                                sys.stdout.write('\x1b[1A')
@@ -211,10 +187,7 @@ class HMAC_HASH :
                                sys.stdout.write('\x1b[2K')
                                sys.stdout.write('\x1b[1A')
                                sys.stdout.write('\x1b[2K')
-                               sys.stdout.write('\x1b[1A')
-                               sys.stdout.write('\x1b[2K')
                                count +=1 
-                               count1 +=1 
                            else:
                                print (B+'\n[*] Password Not Found','\n')
                                print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
@@ -250,29 +223,21 @@ class HMAC_HASH :
                                       print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                                       exit()  
                                   count  = 0
-                                  second = 0    
-                                  minute = 0    
-                                  hours  = 0   
-                                  count1 = 0  
+                                  start = timeit.default_timer()
                                   for secrit in passwords :
                                       hash_password =  hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha384).hexdigest()
                                       hash_password1 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha3_384).hexdigest()
-                                      if (count1 == 10): 
-                                          count1 =0                                                 
-                                          second+=1   
-                                      if(second == 60):    
-                                          second = 0    
-                                          minute+=1    
-                                      if(minute == 60):    
-                                          minute = 0    
-                                          hours+=1; 
+                                      stop = timeit.default_timer()
+                                      sec = stop  - start
+                                      fix_time = time.gmtime(sec)
+                                      result = time.strftime("%H:%M:%S",fix_time)
                                       if hash_password == self.input_value :
                                              print(B+'[*] '+W+R+'Same Hash Match    : ',hash_password[:48])\
                                              ;print('                       : ',hash_password[48:]+W)                                              
                                              print (B+'[*] '+W+B+'Hash ID            :  HMAC-SHA_384 '+W) 
                                              print (B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                              print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W) 
-                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                              print('         ',B+('='*25)+W) 
                                              exit()                         
                                       elif hash_password1 ==self.input_value :
@@ -281,18 +246,18 @@ class HMAC_HASH :
                                              print (B+'[*] '+W+B+'Hash ID            :  HMAC-SHA3_384  '+W) 
                                              print (B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                              print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                              print('         ',B+('='*25)+W)
     
                                              exit()
-                                      print(B+'[*] '+W+B+'Try Password       : '+W,P+secrit); print(B+'[*] '+W+R+'Try HMAC-SHA_384   : ',hash_password[:48])\
+                                      print(B+'[*] '+W+R+'Try HMAC-SHA_384   : ',hash_password[:48])\
                                       ;print('                       : ',hash_password[48:]+W)\
                                       ;print(B+'[*] '+W+Y+'Try HMAC-SHA3_384  : ',hash_password1[48:])\
                                       ;print('                       : ',hash_password1[48:]+W)\
                                       ;print(B+'[*] '+W+R+'Password Count     : '+W,P+str(count)+W)\
-                                      ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)\
+                                      ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)\
                                       ;print('           ',B+('='*25)+W)
-                                      time.sleep(0.1)                           
+                                      time.sleep(0.0001)                           
                                       sys.stdout.write('\x1b[1A')
                                       sys.stdout.write('\x1b[2K')                                                                                   
                                       sys.stdout.write('\x1b[1A')
@@ -306,11 +271,9 @@ class HMAC_HASH :
                                       sys.stdout.write('\x1b[1A')
                                       sys.stdout.write('\x1b[2K')  
                                       sys.stdout.write('\x1b[1A')
-                                      sys.stdout.write('\x1b[2K') 
-                                      sys.stdout.write('\x1b[1A')
                                       sys.stdout.write('\x1b[2K')                                                                                                     
                                       count  +=1 
-                                      count1 +=1
+
                                   else:                        	
                                      print (B+'\n[*] Password Not Found','\n')
                                      print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
@@ -327,7 +290,7 @@ class HMAC_HASH :
                             print(B+'[*] '+W,R+'Hash-Identifier'+W)
                             print(Y+"*"*20+W,'\n')
                             time.sleep(1)
-                            
+                            start = timeit.default_timer()
                             print (B+'[*] '+W+R+'Hash  ID  : HMAC-SHA256   ')
                             time.sleep(1)
                             print (B+'[*] '+W+Y+'Hash  ID  : HMAC-SHA3_256 ')
@@ -349,30 +312,22 @@ class HMAC_HASH :
                                   print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                                   exit()  
                                count  = 0
-                               second = 0    
-                               minute = 0    
-                               hours  = 0   
-                               count1 = 0   
+                               start = timeit.default_timer()  
                                for secrit in passwords :
                                   hash_password  = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha256).hexdigest()                                  
                                   hash_password1 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(), hashlib.sha3_256).hexdigest()
                                   hash_password2 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(), hashlib.blake2s).hexdigest()
-                                  if (count1 == 10): 
-                                      count1 =0                                                 
-                                      second+=1   
-                                  if(second == 60):    
-                                      second = 0    
-                                      minute+=1    
-                                  if(minute == 60):    
-                                       minute = 0    
-                                       hours+=1;
+                                  stop = timeit.default_timer()
+                                  sec = stop  - start
+                                  fix_time = time.gmtime(sec)
+                                  result = time.strftime("%H:%M:%S",fix_time)
                                   if hash_password == self.input_value :
                                      print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password2[:32])\
                                      ;print('                       : ',hash_password2[32:]+W)  
                                      print(B+'[*] '+W+B+'Hash ID            :'+W+R+'  HMAC-SHA256 '+W) 
                                      print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                      print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W) 
-                                     print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                     print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                      print('         ',B+('='*25)+W)
                                      exit()                           
                                   elif hash_password1 ==self.input_value :
@@ -381,7 +336,7 @@ class HMAC_HASH :
                                        print(B+'[*] '+W+B+'Hash ID            :'+W+R+'  HMAC-SHA3_256 '+W) 
                                        print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                        print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W) 
-                                       print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                       print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                        print('         ',B+('='*25)+W)                              
                                        exit()   
                                   elif hash_password2 ==self.input_value:
@@ -390,19 +345,19 @@ class HMAC_HASH :
                                        print(B+'[*] '+W+Y+'Hash ID            :'+W+Y+' HMAC-BLAKE2S'+W) 
                                        print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                        print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                       print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                       print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                        print('         ',B+('='*25)+W)
                                        exit()                                                                                              
-                                  print(B+'[*] '+W+B+'Try Password       : '+W,P+secrit+W);print(); print(B+'[*] '+W+R+'Try HMAC-SHA256    : ',\
+                                  print(B+'[*] '+W+R+'Try HMAC-SHA256    : ',\
                                   hash_password[:32]);print('                       : ',hash_password[32:]+W)\
                                   ;print(B+'[*] '+W+Y+'Try HMAC-SHA3_256  : ',hash_password1[:32])\
                                   ;print('                       : ',hash_password1[32:]+W)\
                                   ;print(B+'[*] '+W+B+'Try HMAC-BLAKE2S   : ',hash_password2[:32])\
-                                  ;print('                       : ',hash_password2[32:]+W+'\n')\
+                                  ;print('                       : ',hash_password2[32:]+W)\
                                   ;print(B+'[*] '+W+R+'Password Count     : ',P+str(count)+W)\
-                                  ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)\
+                                  ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)\
                                   ;print('           ',B+('='*25)+W)
-                                  time.sleep(0.1)                           
+                                  time.sleep(0.0001)                           
                                   sys.stdout.write('\x1b[1A')
                                   sys.stdout.write('\x1b[2K')                                                                                   
                                   sys.stdout.write('\x1b[1A')
@@ -421,12 +376,7 @@ class HMAC_HASH :
                                   sys.stdout.write('\x1b[2K') 
                                   sys.stdout.write('\x1b[1A')
                                   sys.stdout.write('\x1b[2K')
-                                  sys.stdout.write('\x1b[1A')
-                                  sys.stdout.write('\x1b[2K')
-                                  sys.stdout.write('\x1b[1A')
-                                  sys.stdout.write('\x1b[2K')
-                                  count +=1
-                                  count1 +=1        
+                                  count +=1      
                                else: 
                                  print (B+'\n[*] Password Not Found','\n')
                                  print ('[*] PLease Try another WordList','\n',('*'*30)+W)
@@ -464,30 +414,22 @@ class HMAC_HASH :
                                     print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                                     exit()                        
                                  count  = 0
-                                 second = 0    
-                                 minute = 0    
-                                 hours  = 0   
-                                 count1 = 0   
+                                 start = timeit.default_timer()  
                                  for secrit in passwords :
                                      hash_password  = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha3_512).hexdigest() 
                                      hash_password1 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.blake2b).hexdigest()
                                      hash_password2 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(),hashlib.sha512).hexdigest()
-                                     if (count1 == 10): 
-                                          count1 =0                                                 
-                                          second+=1   
-                                     if(second == 60):    
-                                          second = 0    
-                                          minute+=1    
-                                     if(minute == 60):    
-                                          minute = 0    
-                                          hours+=1;
+                                     stop = timeit.default_timer()
+                                     sec = stop  - start
+                                     fix_time = time.gmtime(sec)
+                                     result = time.strftime("%H:%M:%S",fix_time)
                                      if hash_password == self.input_value :
                                           print(B+'[*] '+W+R+'Same Hash Match    : '+W,R+hash_password[:64])\
                                           ;print('                       : ',hash_password[64:]+W)  
                                           print (B+'[*] '+W+Y+'Hash ID            :  HMAC-SHA3_512 '+W) 
                                           print (B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                           print(B+'[*] '+W+Y+'Password Count     : '+W,P+str(count)+W)
-                                          print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                          print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                           print('         ',B+('='*25)+W)
                                           exit()                            
                                      elif hash_password1 ==self.input_value :
@@ -496,7 +438,7 @@ class HMAC_HASH :
                                           print (B+'[*] '+W+B+'Hash ID            :  HMAC-BLAKE2b '+W) 
                                           print (B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                           print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                          print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                          print(B+'[*] '+W+P+'Time              '+W+R+' | '++W,O+result+W)
                                           print('         ',B+('='*25)+W)
                                           exit()    
                                      elif hash_password2 ==self.input_value:
@@ -505,19 +447,19 @@ class HMAC_HASH :
                                           print (B+'[*] '+W+Y+'Hash ID            :  HMAC-SHA512  '+W) 
                                           print (B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                           print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                          print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                          print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                           print('         ',B+('='*25)+W)
                                           exit()                                            
-                                     print(B+'[*] '+W+B+'Try Password       : '+W,P+secrit+W);print(); print(B+'[*] '+W+R+'Try HMAC-SHA3_512  : ',\
+                                     print(); print(B+'[*] '+W+R+'Try HMAC-SHA3_512  : ',\
                                      hash_password[:64]);print('                       : ',hash_password[64:]+W)\
                                      ;print(B+'[*] '+W+Y+'Try HMAC-blake2b   : ',hash_password1[:64])\
                                      ;print('                       : ',hash_password1[64:]+W)\
                                      ;print(B+'[*] '+W+B+'Try HMAC-SHA_512   : ',hash_password2[:64])\
                                      ;print('                       : ',hash_password2[64:]+W)\
                                      ;print(B+'[*] '+W+R+'Password Count     : ',P+str(count)+W)\
-                                     ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)\
+                                     ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)\
                                      ;print('           ',B+('='*25)+W)
-                                     time.sleep(0.1)                           
+                                     time.sleep(0.0001)                           
                                      sys.stdout.write('\x1b[1A')
                                      sys.stdout.write('\x1b[2K')                                                                                   
                                      sys.stdout.write('\x1b[1A')
@@ -538,10 +480,7 @@ class HMAC_HASH :
                                      sys.stdout.write('\x1b[2K') 
                                      sys.stdout.write('\x1b[1A')
                                      sys.stdout.write('\x1b[2K') 
-                                     sys.stdout.write('\x1b[1A')
-                                     sys.stdout.write('\x1b[2K')
                                      count +=1 
-                                     count1 +=1
                                  else:
                                      print (B+'\n[*] Password Not Found','\n')
                                      print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
@@ -576,28 +515,20 @@ class HMAC_HASH :
                                       print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                                       exit()  
                                   count  = 0
-                                  second = 0    
-                                  minute = 0    
-                                  hours  = 0   
-                                  count1 = 0   
+                                  start = timeit.default_timer()  
                                   for secrit in passwords :
                                       hash_password  =  hmac.new(self.re_Hash_Key.encode(),secrit.encode(), hashlib.sha3_224).hexdigest()
                                       hash_password1 = hmac.new(self.re_Hash_Key.encode(),secrit.encode(), hashlib.sha224).hexdigest()
-                                      if (count1 == 10): 
-                                          count1 =0                                                 
-                                          second+=1   
-                                      if(second == 60):    
-                                          second = 0    
-                                          minute+=1    
-                                      if(minute == 60):    
-                                          minute = 0    
-                                          hours+=1;
+                                      stop = timeit.default_timer()
+                                      sec = stop  - start
+                                      fix_time = time.gmtime(sec)
+                                      result = time.strftime("%H:%M:%S",fix_time)
                                       if hash_password == self.input_value :
                                              print(B+'[*] '+W+R+'Same Hash Match    : ',hash_password+W)  
                                              print(B+'[*] '+W+B+'Hash ID            :  HMAC-SHA3_224 '+W) 
                                              print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                              print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                              print('         ',B+('='*25)+W) 
                                              exit()                         
                                       elif hash_password1 ==self.input_value :
@@ -605,14 +536,14 @@ class HMAC_HASH :
                                              print(B+'[*] '+W+B+'Hash ID            :  HMAC-SHA224  '+W) 
                                              print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                              print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W)
-                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)
+                                             print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                              print('         ',B+('='*25)+W)    
                                              exit()
-                                      print(B+'[*] '+W+B+'Try Password       : '+W,P+secrit); print(B+'[*] '+W+R+'Try HMAC-SHA3_224  : ',hash_password+W)\
+                                      print(B+'[*] '+W+R+'Try HMAC-SHA3_224  : ',hash_password+W)\
                                       ;print(B+'[*] '+W+Y+'Try HMAC-SHA_224   : ',hash_password1+W);print(B+'[*] '+W+R+'Password Count     : '+W,P+str(count)+W)\
-                                      ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+'%d : %d : %d '%(hours,minute,second)+W)\
+                                      ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)\
                                       ;print('           ',B+('='*25)+W)
-                                      time.sleep(0.1)                           
+                                      time.sleep(0.0001)                           
                                       sys.stdout.write('\x1b[1A')
                                       sys.stdout.write('\x1b[2K')                                                                                   
                                       sys.stdout.write('\x1b[1A')
@@ -622,11 +553,8 @@ class HMAC_HASH :
                                       sys.stdout.write('\x1b[1A')
                                       sys.stdout.write('\x1b[2K')  
                                       sys.stdout.write('\x1b[1A')
-                                      sys.stdout.write('\x1b[2K')   
-                                      sys.stdout.write('\x1b[1A')
-                                      sys.stdout.write('\x1b[2K')                                                                                                       
+                                      sys.stdout.write('\x1b[2K')                                                                                                          
                                       count +=1 
-                                      count1 +=1
                                   else:                        	
                                      print (B+'\n[*] Password Not Found','\n')
                                      print ('[*] PLease Try another WordList','\n',('*'*30)+W) 

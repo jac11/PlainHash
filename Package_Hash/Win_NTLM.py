@@ -32,7 +32,7 @@ class Win_Hash:
                    self.path= os.path.abspath(self.args.read)
                    self.list= open(self.path)             
                    self.line_read =self.list.readline().rstrip().lower() 
-                   self.input_value = self.line_read
+                   self.input_value = self.line_read.strip()
                 except FileNotFoundError :
                     print(Y+'[*] Hash File','{}'.format(self.path),W+B+' Not Found'+W) 
                     exit()  
