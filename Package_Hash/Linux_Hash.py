@@ -173,6 +173,7 @@ class Linux_Hash:
                re_hash_salt = str(re.findall('(.[^$^]\w\D\S+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
                hash_type = "$y"+re_hash_salt
                Hash = self.input_value.replace(hash_type,'')
+               Hash_account = self.input_value[73:]
                try:
                    self.path = os.path.abspath(self.args.wordlist)
                    self.list = open(self.path,'r',encoding = "ISO-8859-1")             
@@ -181,17 +182,19 @@ class Linux_Hash:
                except FileNotFoundError :
                    print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
                            
-               print(B+'[*]'+W+R+' Hash Id   :'+W+Y+' yescrypt - Version: yescrypt 1.1.0 '+W)
+               print(B+'[*]'+W+R+' Hash Id      :'+W+Y+' yescrypt - Version: yescrypt 1.1.0 '+W)
                time.sleep(1)
-               print(B+'[*]'+W+R+' param     :'+W+Y,re_Hash_id)
+               print(B+'[*]'+W+R+' param        :'+W+Y,re_Hash_id)
                time.sleep(1)
-               print(B+'[*]'+W+R+' Hash Salt :'+W+Y,re_hash_salt)
+               print(B+'[*]'+W+R+' Hash Salt    :'+W+Y,re_hash_salt)
                time.sleep(1)
-               print(B+'[*]'+W+R+' Hash      :'+W,Y+Hash+W)
+               print(B+'[*]'+W+R+' Hash         :'+W,Y+Hash.replace(Hash_account,'')+W)
+               time.sleep(1)
+               print(B+'[*]'+W+R+' Account info :'+W,Y+Hash_account+W)
                time.sleep(1)
                print((B+'*'*30+W),'\n',B+'[*]'+W+R+'Plain_Hash_Start'+W,'\n',(B+'-'*20+W),'\n')
                time.sleep(2)
-               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:35],'\n','                   : ', self.input_value[35:] +W)
+               print(B+'[*] '+W+Y+'Original Hash   : '+W,O+self.input_value[0:46],'\n','                   : ', self.input_value[46:] +W)
                count  = 0                            
                start = timeit.default_timer()
                for secrit in passwords :
@@ -200,17 +203,17 @@ class Linux_Hash:
                    sec = stop  - start
                    fix_time = time.gmtime(sec)
                    result = time.strftime("%H:%M:%S",fix_time)
-                   if crypt_Hash == self.input_value :
-                         print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:35])\
-                         ;print('                    : ',crypt_Hash[35:]+W) 
+                   if crypt_Hash + self.input_value[73:] == self.input_value :
+                         print(B+'[*] '+W+R+ 'Same Hash Match : '+W,R+crypt_Hash[:46])\
+                         ;print('                    : ',crypt_Hash[46:]+Hash_account+W) 
                          print (B+'[*] '+W+R+'Password Found  : '+W,P+secrit+W)
                          print(B+'[*] '+W+Y+'Password Count  : '+W,R+str(count)+W) 
                          print(B+'[*] '+W+P+'Time        '+W+R+'    | '+W,O+result+W)
                          print('         ',B+('='*25)+W)                                                          
                          break
                          exit()
-                   print(B+'[*] '+W+R+'Try Hash        : ', R+hash_type+W+B+crypt_Hash[len(hash_type):40])\
-                   ;print('                    : ',crypt_Hash[40:]+W)\
+                   print(B+'[*] '+W+R+'Try Hash        : ', R+hash_type+W+B+crypt_Hash[len(hash_type):46])\
+                   ;print('                    : ',crypt_Hash[46:]+W+R+Hash_account)\
                    ;print(B+'[*] '+W+B+'Password Count  : '+W,R+str(count)+W)\
                    ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)\
                    ;print('        ',B+('='*25)+W)     
