@@ -605,7 +605,8 @@ class Plain_Hash :
         parser.add_argument("-i","--info"      , action='store_true'   ,help ="Show the Hash Supporting  and Information")   
         parser.add_argument("-c","--color"     , action='store_true'   ,help ="set color display off")      
         parser.add_argument("-r","--read"      , action=None           ,help ="read the hash from file input")            
-        self.args = parser.parse_args()        
+        self.args = parser.parse_args()  
+        print(W+"")
         if len(sys.argv)!=1 :
             pass
         else:
