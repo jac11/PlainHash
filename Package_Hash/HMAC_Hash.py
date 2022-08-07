@@ -38,7 +38,7 @@ class HMAC_HASH :
          self.SHA_3_512 = int(128)
 
          self.control()
-         if self.args.color  and 'off' in sys.argv:
+         if self.args.color :
             W=''     
             R=''    
             G=''  
@@ -46,10 +46,6 @@ class HMAC_HASH :
             B=''    
             P=''   
             Y=''
-         else:
-              if self.args.color  and 'off' not in  sys.argv :
-                 print (P+'[*] error: argument -c/--color: expected argument off '+W)
-                 exit()
          self.input_hash()                        
      def input_hash(self):
             if self.args.read:               
@@ -573,7 +569,7 @@ class HMAC_HASH :
     
         parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")       
         parser.add_argument("-w","--wordlist" , metavar='' , action=None ,help ="wordlist of passwords") 
-        parser.add_argument("-c","--color" , metavar='' , action=None ,default=False,help ="set color display off")      
+        parser.add_argument("-c","--color" , action='store_true' ,default=False,help ="set color display off")       
         parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input") 
         
         self.args = parser.parse_args()        

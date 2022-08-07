@@ -37,7 +37,7 @@ class Plain_Hash :
          self.SHA3_384  = int(96)
          self.SHA_3_512 = int(128)         
          self.control()
-         if self.args.color  and 'off' in sys.argv:
+         if self.args.color :
             W=''     
             R=''    
             G=''  
@@ -45,10 +45,6 @@ class Plain_Hash :
             B=''    
             P=''   
             Y=''
-         else:
-              if self.args.color  and 'off' not in  sys.argv :
-                 print (P+'[*] error: argument -c/--color: expected argument off '+W)
-                 exit()
          self.input_hash() 
          try:         
             if self.args.info and sys.argv[2]=='info':
@@ -607,12 +603,12 @@ class Plain_Hash :
      def control(self):
     
         parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")      
-        parser.add_argument("-H",'--hash' , metavar='' , action=None  ,help ="Hash string ") 
-        parser.add_argument("-w","--wordlist" , metavar='' , action=None ,help ="wordlist of passwords") 
-        parser.add_argument("-i","--info" , metavar='' , action=None ,help ="Show the Hash Supporting  and Information")   
-        parser.add_argument("-c","--color" , metavar='' , action=None ,default=False,help ="set color display off")      
-        parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input") 
-        
+        parser.add_argument("-H",'--hash'      , metavar=''            , action=None  ,help ="Hash string ") 
+        parser.add_argument("-w","--wordlist"  , action=None           ,help ="wordlist of passwords") 
+        parser.add_argument("-i","--info"      , action='store_true'   ,help ="Show the Hash Supporting  and Information")   
+        parser.add_argument("-c","--color"     , action='store_true'   ,help ="set color display off")      
+        parser.add_argument("-r","--read"      , action=None           ,help ="read the hash from file input") 
+           
         self.args = parser.parse_args()        
         if len(sys.argv)!=1 :
             pass

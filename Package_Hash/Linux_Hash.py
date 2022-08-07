@@ -33,6 +33,14 @@ class Linux_Hash:
             global Y 
             
             self.control() 
+            if self.args.color :
+               W=''     
+               R=''    
+               G=''  
+               O=''     
+               B=''    
+               P=''   
+               Y=''
             self.input_hash()                     
         def input_hash(self):
             if self.args.read:
@@ -492,6 +500,7 @@ class Linux_Hash:
            parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")      
            parser.add_argument("-w","--wordlist" , metavar='' , action=None ,required=True,help ="wordlist of passwords") 
            parser.add_argument("-r","--read" , metavar='' , action=None ,help ="read the hash from file input" ) 
+           parser.add_argument("-c","--color" , action='store_true' ,default=False,help ="set color display off") 
            self.args = parser.parse_args()     
            if len(sys.argv)!=1 :
               pass
