@@ -45,17 +45,14 @@ class Plain_Hash :
             B=''    
             P=''   
             Y=''
-         self.input_hash() 
-         try:         
-            if self.args.info and sys.argv[2]=='info':
-               from Package_Hash.Info import Info
-               run = print_info()
-            else :
-               print(P+'[*] More Info Use -i info or --info info'+W )  
-               exit()
-         except IndexError :
-               print(P+'[*] More Info Use -i info or --info info'+W )  
-               exit()                       
+         self.input_hash()         
+         if self.args.info :
+            from Package_Hash.Info import Info
+            run = print_info()
+            exit()
+         if self.args.color and len(sys.argv)==2 :
+            print('\033[1;33m'+'usage: PlainHash.py [-h] [-H] [-w WORDLIST] [-i] [-c] [-r READ]'+'\033[0m')
+            exit()
      def input_hash(self):
             
             if self.args.read:               
@@ -601,19 +598,18 @@ class Plain_Hash :
               exit()   
               
      def control(self):
-    
+        print(B+"")
         parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")      
-        parser.add_argument("-H",'--hash'      , metavar=''            , action=None  ,help ="Hash string ") 
+        parser.add_argument("-H",'--hash'      , action=None           ,help ="Hash string ") 
         parser.add_argument("-w","--wordlist"  , action=None           ,help ="wordlist of passwords") 
         parser.add_argument("-i","--info"      , action='store_true'   ,help ="Show the Hash Supporting  and Information")   
         parser.add_argument("-c","--color"     , action='store_true'   ,help ="set color display off")      
-        parser.add_argument("-r","--read"      , action=None           ,help ="read the hash from file input") 
-           
+        parser.add_argument("-r","--read"      , action=None           ,help ="read the hash from file input")            
         self.args = parser.parse_args()        
         if len(sys.argv)!=1 :
             pass
         else:
-            parser.print_help()         
+            parser.print_help()        
             exit()
            
 if __name__ == '__main__':
