@@ -285,7 +285,7 @@ class Plain_Hash :
                                       ;print(B+'[*] '+W+Y+'Try Hash sha3_384  : ',hash_password1[48:])\
                                       ;print('                       : ',hash_password1[48:]+W)\
                                       ;print(B+'[*] '+W+R+'Password Count     : '+W,P+str(count)+W)\
-                                      ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)\
+                                      ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)\
                                       ;print('           ',B+('='*25)+W) 
                                       time.sleep(0.0001)                           
                                       sys.stdout.write('\x1b[1A')
@@ -381,7 +381,7 @@ class Plain_Hash :
                                   ;print(B+'[*] '+W+B+'Try Hash BLAKE2S   : ',hash_password2[:32])\
                                   ;print('                       : ',hash_password2[32:]+W)\
                                   ;print(B+'[*] '+W+R+'Password Count     : ',P+str(count)+W)\
-                                  ;print(B+'[*] '+W+P+'Time               '+W+R+' | '+W,O+result+W)\
+                                  ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)\
                                   ;print('           ',B+('='*25)+W)                                   
                                   time.sleep(0.0001)                           
                                   sys.stdout.write('\x1b[1A')
@@ -472,8 +472,8 @@ class Plain_Hash :
                                           ;print('                       : ',hash_password2[64:]+W)
                                           print(B+'[*] '+W+Y+'Hash ID            :  SHA512  '+W) 
                                           print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
+                                          print(B+'[*] '+W+Y+'Password Count     : '+W,P+str(count)+W)
                                           print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
-                                          print(B+'[*] '+W+P+'Time           '+W+R+'                  | '+W,O+result+W)
                                           print('         ',B+('='*25)+W)
                                           exit()                                            
                                      print(); print(B+'[*] '+W+R+'Try Hash sha3_512  : ',\
@@ -564,7 +564,7 @@ class Plain_Hash :
                                              exit()
                                       print(B+'[*] '+W+R+'Try Hash sha3_224  : ',hash_password+W)\
                                       ;print(B+'[*] '+W+Y+'Try Hash sha224    : ',hash_password1+W);print(B+'[*] '+W+R+'Password Count     : '+W,P+str(count)+W)\
-                                      ;print(B+'[*] '+W+P+'Time           '+W+R+' | '+W,O+result+W)\
+                                      ;print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)\
                                       ;print('            ',B+('='*25)+W) 
                                       time.sleep(0.0001)                           
                                       sys.stdout.write('\x1b[1A')
