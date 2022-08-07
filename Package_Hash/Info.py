@@ -1,18 +1,35 @@
 #!/usr/bin/env python3
 
+import argparse
 from Package_Hash.Banner import Banner
 
+
+
 class Info:
-     
+    
     def print_info():
-            
-             W='\033[0m'     
-             R='\033[31m'    
-             G='\033[0;32m'  
-             O='\33[37m'     
-             B='\033[34m'    
-             P='\033[35m'   
-             Y='\033[1;33m'                          
+             parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")
+             parser.add_argument("-c","--color"     , action='store_true'   ,help ="set color display off")
+             parser.add_argument("-i","--info"      , action='store_true'   ,help ="Show the Hash Supporting  and Information")  
+             args = parser.parse_args()
+             if args.color:
+                 W=''     
+                 R=''    
+                 G=''  
+                 O=''     
+                 B=''    
+                 P=''   
+                 Y=''  
+             else:
+                 W='\033[0m'     
+                 R='\033[31m'    
+                 G='\033[0;32m'  
+                 O='\33[37m'     
+                 B='\033[34m'    
+                 P='\033[35m'   
+                 Y='\033[1;33m'    
+             print (Y+'[*] Note :','\n','*'*20,'\n')
+             print (Y+'[*] python 3.9.* Not Support MD4 Hash\n[*] To Crack MD4 and NTLM MD4 "Windows Hash" Do \n[*] pip install pycryptodome\n')                        
              print (Y+'[*] Hash Support :','\n','*'*20,'\n')
              print ('[*] MD4             ')
              print ('[*] MD5             [*] SHA1  ')    
@@ -41,7 +58,8 @@ class Info:
              print (Y+'='*35,'\n\n','[*] Salt Hash Support :','\n',('*'*25),'\n')
              print ('[*] MD5-CRYPT        [*] SHA1-CRYPT  ')
              print ('[*] SHA256-CRYPT     [*] SHA512-CRYPT  ')
-             print ('[*] BCRYPT-[Y]       [*] BCRYPT-[2Y] '+W+'\n')              
+             print ('[*] BCRYPT-[Y]       [*] BCRYPT-[2Y] ')  
+             print ('[*] YESCRYPT  '+W+'\n')            
              print (P+'[+] With "Crypt Hash" Copy Hash Into File') 
              print ('[+] Example : $6$efxS7PCQU0SZi33L$H7sWCUQJ0dDBKwSZmxwADtp6D553OyjFRUfA3PKnf4JAT625jiRvDBFUTB2501CLCDzNlbjkCqM4PFJsxV9Qx/')
              print ('[*] then Use -r Option or --read To give File Path' )
