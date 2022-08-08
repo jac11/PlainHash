@@ -369,7 +369,7 @@ class Linux_Hash:
                    exit() 
                                                                                  
               
-           elif self.args.read  and '$2y$' in self.input_value :
+           elif self.args.read  and '$2y$' in self.input_value  or "$2a$" in  self.input_value :
                re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
                re_hash_Cost = str(re.findall('[^$]\d+[$^]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace('$','')               
                hash_type =    str(re.findall('^[$^]\S+[$]......................' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                         
@@ -382,8 +382,12 @@ class Linux_Hash:
                   passwords = self.line.split()
                except FileNotFoundError :
                   print(Y+'[*] Wordlist File','{}'.format(self.path),W+B+' Not Found'+W) 
-                  exit()             
-               print(B+'[*]'+W+R+' Hash Id   :'+W+Y+ ' bcrypt-Version: 2y '+W+B+ ' crypt: '+W+R+'[blowfish hash]'+W)
+                  exit()  
+               if "$2a$" in self.input_value :
+                     print(B+'[*]'+W+R+' Hash Id   :'+W+Y+ ' bcrypt-Version: 2a '+W+B+ ' crypt: '+W+R+'[blowfish hash]'+W)    
+               else:
+                   if '$2y$' in self.input_value :  
+                       print(B+'[*]'+W+R+' Hash Id   :'+W+Y+ ' bcrypt-Version: 2y '+W+B+ ' crypt: '+W+R+'[blowfish hash]'+W)
                time.sleep(1)
                print(B+'[*]'+W+R+' Cost      :'+W+Y,re_hash_Cost)
                time.sleep(1)
@@ -432,9 +436,8 @@ class Linux_Hash:
                else:  
                    print (B+'\n[*] Password Not Found','\n')
                    print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
-                   exit() 
-                                                                              
-               
+                   exit()                                                                   
+             
            elif self.args.read  and '$6$' in self.input_value :
                re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
                re_hash_salt = str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
