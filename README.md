@@ -14,9 +14,12 @@
 * SHA3_224 - SHA3_224  - SHA_3_256
 ### Salt Hash Support:
 * MD5-CRYPT  - BCRYPT-[Y]
-* SHA1-CRYPT - SHA256-CRYPT
+* SHA1-CRYPT - SHA256-CRYPT 
 * SHA512-CRYPT  - bcrypt-2y
 * yescrypt - Version: yescrypt 1.1.0 
+## Note :
+*  pip install pycryptodome 
+* python3 disable MD4 HASh so ' pip install pycryptodome' To can crack MD4 hash
 ### Windows-Hash
 * Windows-NTLM-V1 MD4 Encode[UTF-16LE]
 ### Hash Message Authentication Code "HMAC" : 
