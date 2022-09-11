@@ -1,4 +1,7 @@
 # PlainHash
+PlanHash tool help to carck the password Hash by using wordlist passwords 
+genterate hash for ecth passowrd and campare it with oranale password 
+suppot crypto hash 
 * PlainHash written by python 3.9.1
 
 ## info 
