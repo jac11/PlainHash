@@ -8,6 +8,7 @@ suppot crypto hash
 * plainHash script help to  crack hash by using wordlist
 * PlainHash use Secure hashes and message digests 'hashlib'
 * PlainHash use for salt hash 'crypt' 
+* pip install pycryptodome
 
 ##  Hash Support : 
 * MD4
