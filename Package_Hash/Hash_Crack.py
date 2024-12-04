@@ -72,7 +72,7 @@ class Plain_Hash :
      def hash_id(self)  :
        
         try:             
-                if len(self.input_value) == self.md5_hash:
+                if len(self.input_value) == self.md5_hash and "$" not in self.input_value:
                      if  not self.args.wordlist :
                          print (Y+'[*] WordList Required  Use -w '+W)   
                          exit()
@@ -161,7 +161,7 @@ class Plain_Hash :
                             print (B+'\n[*] Password Not Found','\n')
                             print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
                             exit()                            
-                elif len(self.input_value) == self.SHA_1 :
+                elif len(self.input_value) == self.SHA_1 and "$" not in self.input_value :
                         if  not self.args.wordlist :
                             print (Y+'[*] WordList Required  Use -w '+W)   
                             exit()
@@ -219,7 +219,7 @@ class Plain_Hash :
                                print (B+'\n[*] Password Not Found','\n')
                                print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
                                exit()                           
-                elif len(self.input_value) == self.SHA3_384 :
+                elif len(self.input_value) == self.SHA3_384 and "$" not in self.input_value:
                                 if  not self.args.wordlist :
                                     print (Y+'[*] WordList Required  Use -w '+W)   
                                     exit()
@@ -264,7 +264,7 @@ class Plain_Hash :
                                              print(B+'[*] '+W+P+'Time              '+W+R+' | '+W,O+result+W)
                                              print('         ',B+('='*25)+W) 
                                              exit()                         
-                                      elif hash_password1 ==self.input_value :
+                                      elif hash_password1 ==self.input_value  :
                                              print(B+'[*] '+W+Y+'Same Hash Match    : ',hash_password1[48:])\
                                              ;print('                       : ',hash_password1[48:]+W)
                                              print(B+'[*] '+W+B+'Hash ID            :  SHA3_384  '+W) 
@@ -302,7 +302,7 @@ class Plain_Hash :
                                      print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
                                      exit()
                                                                 
-                elif len(self.input_value)== self.SHA_256 :
+                elif len(self.input_value)== self.SHA_256 and "$" not in self.input_value:
                             if  not self.args.wordlist :
                                 print (Y+'[*] WordList Required  Use -w '+W)   
                                 exit()
@@ -403,7 +403,7 @@ class Plain_Hash :
                                  print ('[*] PLease Try another WordList','\n',('*'*30)+W)
                                  exit() 
                                                       
-                elif len(self.input_value)	== self.SHA_3_512 :
+                elif len(self.input_value)	== self.SHA_3_512 and "$" not in self.input_value:
                               if  not self.args.wordlist :
                                   print (Y+'[*] WordList Required  Use -w '+W)   
                                   exit()
@@ -504,7 +504,7 @@ class Plain_Hash :
                                      print (B+'\n[*] Password Not Found','\n')
                                      print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
                                      exit()                                         
-                elif len(self.input_value)== self.SHA3_224 : 
+                elif len(self.input_value)== self.SHA3_224 and "$" not in self.input_value: 
                                 if  not self.args.wordlist :
                                     print (Y+'[*] WordList Required  Use -w '+W)   
                                     exit()
@@ -579,6 +579,7 @@ class Plain_Hash :
                      from Package_Hash.Linux_Hash import Linux_Hash
                      run = Linux_Hash()
                      exit()  
+
                 elif "$" not in self.input_value and len( self.input_value)==int(65) :
                      from Package_Hash.Win_NTLM import Win_Hash
                      run = Win_Hash()   
