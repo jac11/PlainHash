@@ -26,7 +26,11 @@ suppot crypto hash
 * SHA512-CRYPT  - bcrypt-2y
 * yescrypt - Version: yescrypt 1.1.0 
 ## Note :
-*  pip install pycryptodome 
+ * pip install pycryptodome 
+ * pip install bcrypt 
+ ## if error with pip use
+*  pip install pycryptodome --break-system-packages
+*  pip install bcrypt --break-system-packages
 * python3 disable MD4 HASh so ' pip install pycryptodome' To can crack MD4 hash
 ### Windows-Hash
 * Windows-NTLM-V1 MD4 Encode[UTF-16LE]
