@@ -3,7 +3,11 @@ PlanHash tool help to carck the password Hash by using wordlist passwords
 genterate hash for ecth passowrd and campare it with oranale password 
 suppot crypto hash 
 * PlainHash written by python 3.9.1
+------------------------------------------------------------------------------------
+# Important Notice: crypt Module Removal in Python 3.13
 
+* The crypt module, which was used for checking Unix passwords, has been removed in Python 3.13 after being deprecated in Python 3.11 (as per PEP 594).
+* If you are using Python 3.13 or later, the crypt module will not work with this tool.
 ## info 
 * plainHash script help to  crack hash by using wordlist
 * PlainHash use Secure hashes and message digests 'hashlib'
