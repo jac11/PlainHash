@@ -60,9 +60,9 @@ class Linux_Hash:
            print(Y+"*"*20+W,'\n')
            time.sleep(1)                  
            if self.args.read  and '$1$' in self.input_value  :
-               re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
-               re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
-               hash_type =    str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
+               re_Hash_id   = str(re.findall('^([$]\\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
+               re_hash_salt = str(re.findall('(.[^$^]\\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
+               hash_type =    str(re.findall('^[$^]\\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
                try:
                   self.path = os.path.abspath(self.args.wordlist)
@@ -117,9 +117,9 @@ class Linux_Hash:
                    exit()                                  
                                          
            elif self.args.read  and '$y$' in self.input_value and "$j9T$" not in self.input_value:
-               re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
-               re_hash_salt = str(re.findall('(.[^$^]\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
-               hash_type =    str(re.findall('\S+\D+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()  
+               re_Hash_id   = str(re.findall('^([$]\\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
+               re_hash_salt = str(re.findall('(.[^$^]\\w+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
+               hash_type =    str(re.findall('\\S+\\D+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()  
                Hash = self.input_value.replace(hash_type,'')
                try:
                    self.path = os.path.abspath(self.args.wordlist)
@@ -178,7 +178,7 @@ class Linux_Hash:
                    exit() 
            elif self.args.read and "$j9T$" in self.input_value :
                re_Hash_id   = "$y$j9T$"
-               re_hash_salt = str(re.findall('(.[^$^]\w\D\S+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
+               re_hash_salt = str(re.findall('(.[^$^]\\w\\D\\S+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
                hash_type = "$y"+re_hash_salt
                Hash = self.input_value.replace(hash_type,'')
                Hash_account = self.input_value[73:]
@@ -245,9 +245,9 @@ class Linux_Hash:
                 
            
            elif self.args.read  and '$sha1$' in self.input_value :
-               e_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
-               re_hash_salt = str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
-               hash_type =    str(re.findall('^[$^]\S+[$]',\
+               e_Hash_id   = str(re.findall('^([$]\\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
+               re_hash_salt = str(re.findall('^[$^]\\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
+               hash_type =    str(re.findall('^[$^]\\S+[$]',\
                self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()\
                .replace(',','').replace(' ','')                      
                Hash = self.input_value.replace(hash_type,'')
@@ -307,9 +307,9 @@ class Linux_Hash:
                    print ('[*] PLease Try another WordList','\n',('*'*30)+W) 
                    exit() 
            elif self.args.read  and '$5$' in self.input_value :
-               re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
-               re_hash_salt = str(re.findall('(^[$^]\S+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
-               hash_type =    str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
+               re_Hash_id   = str(re.findall('^([$]\\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
+               re_hash_salt = str(re.findall('(^[$^]\\S+[$])' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
+               hash_type =    str(re.findall('^[$^]\\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
                try:
                   self.path = os.path.abspath(self.args.wordlist)
@@ -370,9 +370,9 @@ class Linux_Hash:
                                                                                  
               
            elif self.args.read  and '$2y$' in self.input_value  or "$2a$" in  self.input_value :
-               re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
-               re_hash_Cost = str(re.findall('[^$]\d+[$^]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace('$','')               
-               hash_type =    str(re.findall('^[$^]\S+[$]......................' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                         
+               re_Hash_id   = str(re.findall('^([$]\\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
+               re_hash_Cost = str(re.findall('[^$]\\d+[$^]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace('$','')               
+               hash_type =    str(re.findall('^[$^]\\S+[$]......................' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                         
                Hash = self.input_value.replace(hash_type,'')
                re_hash_print = self.input_value.replace(re_Hash_id,'').replace(re_hash_Cost,'').replace(hash_type,'').replace(Hash,'').replace('$','')
                try:
@@ -439,9 +439,9 @@ class Linux_Hash:
                    exit()                                                                   
              
            elif self.args.read  and '$6$' in self.input_value :
-               re_Hash_id   = str(re.findall('^([$]\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
-               re_hash_salt = str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
-               hash_type =    str(re.findall('^[$^]\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
+               re_Hash_id   = str(re.findall('^([$]\\w+[$])'   ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'')
+               re_hash_salt = str(re.findall('^[$^]\\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'') 
+               hash_type =    str(re.findall('^[$^]\\S+[$]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()                          
                Hash = self.input_value.replace(hash_type,'')
                try:
                   self.path = os.path.abspath(self.args.wordlist)

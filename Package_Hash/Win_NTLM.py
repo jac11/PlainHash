@@ -81,8 +81,8 @@ class Win_Hash:
                         count  = 0
                         start = timeit.default_timer()
                         for secrit in passwords :                            
-                            Hash_LM = str(re.findall('\w+:',self.input_value)).replace('[','').replace(']','').replace("'",'')
-                            Hash_NTLM = str(re.findall(':\w+',self.input_value)).replace(':','').replace('[','').replace(']','').replace("'",'')
+                            Hash_LM = str(re.findall('\\w+:',self.input_value)).replace('[','').replace(']','').replace("'",'')
+                            Hash_NTLM = str(re.findall(':\\w+',self.input_value)).replace(':','').replace('[','').replace(']','').replace("'",'')
                             hash_password = MD4.new(secrit.encode('utf-16le')).hexdigest()    #hashlib.new('md4',secrit.encode('utf-16le')).hexdigest() 
                             stop = timeit.default_timer()
                             sec = stop  - start

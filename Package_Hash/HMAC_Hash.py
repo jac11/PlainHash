@@ -54,9 +54,9 @@ class HMAC_HASH :
                    self.list= open(self.path)             
                    self.line_read =self.list.readline().rstrip()
                    self.input_value = self.line_read.strip()
-                   self.hash_type = str(re.findall('\S+[:^]',  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()
-                   self.re_Hash_Key  = str(re.findall('[:^]\S+',  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace(':','')
-                   self.re_HasH = str(re.findall('\S+[:^]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace(':','') 
+                   self.hash_type = str(re.findall('\'S+[:^]',  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()
+                   self.re_Hash_Key  = str(re.findall('[:^]\'S+',  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace(':','')
+                   self.re_HasH = str(re.findall('\'S+[:^]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace(':','') 
                    self.input_value = self.input_value.replace(':','').replace(self.re_Hash_Key,'')
                    self.HMAC_hash()
                    
