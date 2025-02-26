@@ -8,6 +8,7 @@ suppot crypto hash
 
 * The crypt module, which was used for checking Unix passwords, has been removed in Python 3.13 after being deprecated in Python 3.11 (as per PEP 594).
 * If you are using Python 3.13 or later, the crypt module will not work with this tool.
+* * python3 disable MD4 HASh so ' pip install pycryptodome' To can crack MD4 hash
 ## info 
 * plainHash script help to  crack hash by using wordlist
 * PlainHash use Secure hashes and message digests 'hashlib'
@@ -31,7 +32,7 @@ suppot crypto hash
  ## if error with pip use
 *  pip install pycryptodome --break-system-packages
 *  pip install bcrypt --break-system-packages
-* python3 disable MD4 HASh so ' pip install pycryptodome' To can crack MD4 hash
+
 ### Windows-Hash
 * Windows-NTLM-V1 MD4 Encode[UTF-16LE]
 ### Hash Message Authentication Code "HMAC" : 
