@@ -54,7 +54,9 @@ class Plain_Hash :
             print('\033[1;33m'+'usage: PlainHash.py [-h] [-H] [-w WORDLIST] [-i] [-c] [-r READ]'+'\033[0m')
             exit()
      def input_hash(self):
-            
+            if self.args.sshkey:
+                from Package_Hash.sshcrypto import SSHCRACK
+                run = SSHCRACK()   
             if self.args.read:               
                 try:
                    self.path= os.path.abspath(self.args.read)
@@ -587,7 +589,8 @@ class Plain_Hash :
                 elif "$" not in self.input_value and ':' in self.input_value:
                      from Package_Hash.HMAC_Hash import HMAC_HASH       
                      run = HMAC_HASH()  
-                     exit()                        
+                     exit() 
+
                 else :
                    print(Y+'\n[*] Hash-Identifier\n',("*"*20),'\n') 
                    print(P+'[*] Input Hash Not In Our Database '+W)
@@ -604,7 +607,8 @@ class Plain_Hash :
         parser.add_argument("-H",'--hash'      , action=None           ,help ="Hash string ") 
         parser.add_argument("-w","--wordlist"  , action=None           ,help ="wordlist of passwords") 
         parser.add_argument("-i","--info"      , action='store_true'   ,help ="Show the Hash Supporting  and Information")   
-        parser.add_argument("-c","--color"     , action='store_true'   ,help ="set color display off")      
+        parser.add_argument("-c","--color"     , action='store_true'   ,help ="set color display off")     
+        parser.add_argument("-S","--sshkey"     , action=None   ,help ="set color display off")    
         parser.add_argument("-r","--read"      , action=None           ,help ="read the hash from file input")            
         self.args = parser.parse_args()  
         print(W+"")

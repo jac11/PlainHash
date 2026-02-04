@@ -210,7 +210,7 @@ class SSHCRACK:
                         time.sleep(.20)
                         key.write_private_key_file(f'{key_path}.decrypted_key.pem')
                         time.sleep(.20)
-                        print(f"{B}[+]{Y} key saved to      : {O}{str("/".join(key_path.split('/')[:-1]))}/decrypted_key.pem{W}")
+                        print(f"{B}[+]{Y} key saved to      : {O}{str('/'.join(key_path.split('/')[:-1]))}/decrypted_key.pem{W}")
                         time.sleep(.20)
                         
                         return key
