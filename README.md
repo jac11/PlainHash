@@ -245,7 +245,7 @@ GitHub:
 
 ## 📬 Contact
 
-    administrator@jacstory.tech
+    jac11devel@gmail.com
 
 ------------------------------------------------------------------------
 
