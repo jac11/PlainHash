@@ -1,68 +1,257 @@
-# PlainHash
-PlanHash tool help to carck the password Hash by using wordlist passwords 
-genterate hash for ecth passowrd and campare it with oranale password 
-suppot crypto hash 
-* PlainHash written by python 3.9.1
-------------------------------------------------------------------------------------
-# Important Notice: crypt Module Removal in Python 3.13
+# 🔐 PlainHash
 
-* The crypt module, which was used for checking Unix passwords, has been removed in Python 3.13 after being deprecated in Python 3.11 (as per PEP 594).
-* If you are using Python 3.13 or later, the crypt module will not work with this tool.
-* python3 disable MD4 HASh so ' pip install pycryptodome' To can crack MD4 hash
-## Note :
- * pip install pycryptodome 
- * pip install bcrypt 
- ## if error with pip use
-*  pip install pycryptodome --break-system-packages
-*  pip install bcrypt --break-system-packages
- 
-## info 
-* plainHash script help to  crack hash by using wordlist
-* PlainHash use Secure hashes and message digests 'hashlib'
-* PlainHash use for salt hash 'crypt' 
-* pip install pycryptodome
+PlainHash is a password hash cracking tool that performs dictionary
+attacks using wordlists.\
+It generates hashes for each candidate password and compares them with
+the target hash.
 
-##  Hash Support : 
-* MD4
-* MD5  - SHA_1 - SHA_256
-* SHA3_384 - BLAKE2c - SHA_3_512
-* SHA_512  - BLAKE2b - BLAKE2b 
-* SHA3_224 - SHA3_224  - SHA_3_256
-### Salt Hash Support:
-* MD5-CRYPT  - BCRYPT-[Y]
-* SHA1-CRYPT - SHA256-CRYPT 
-* SHA512-CRYPT  - bcrypt-2y
-* yescrypt - Version: yescrypt 1.1.0 
+PlainHash supports multiple modern and legacy hashing algorithms, salted
+hashes, HMAC, Windows hashes, and **SSH private key passphrase
+cracking**.
 
-### Windows-Hash
-* Windows-NTLM-V1 MD4 Encode[UTF-16LE]
-### Hash Message Authentication Code "HMAC" : 
- 
-* HMAC-MD5       - HMAC-SHA1  
-* HMAC-SHA_224   - HMAC-SHA3_224
-* HMAC-SHA_256   - HMAC-SHA3_256
-* HMAC-SHA_384   - HMAC-SHA3_384   
-* HMAC-SHA_512   - HMAC-SHA3_512
-* HMAC-BLAKE2b   - HMAC-BLAKE2s
+PlainHash is written in **Python 3.9+**
 
+------------------------------------------------------------------------
 
-## How to use :
-* git clone https://github.com/jac11/PlainHash
-* cd PlainHash/
-* chmod +x PlainHash.py
-* to check all  option open help menu by typing ./PlainHash.py -h or --help
-* you can use input hash Example: ./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist
-* or you can use as file input ./PlainHash.py -r hash.txt -w wordlist
-* use ./PlainHash.py  -i info  or ./PlainHash.py  --info info for more information
-* to set color of the PlaimHash off use --color off or -c off    Example: ./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist -c off
-* or you can use as file input ./PlainHash.py -r hash.txt -w wordlist
-##  [ help menu overview ] 
- <img src = "images/5.png"><img src = "images/8.png"><img src = "images/9.png" >
-  
+## ⚠️ Important Notice -- `crypt` Module Removal (Python 3.13)
 
-### ScreenShot
- <img src = "images/2.gif" width=400> <img src = "images/7.gif" width=400>  <img src = "images/3.png" width=400> 
-  
-### [for Connect]
-* administrator@jacstory.tech
-* thank you 
+The `crypt` module used for verifying Unix password hashes was:
+
+-   Deprecated in Python **3.11**
+-   Removed in Python **3.13** (PEP 594)
+
+If you are using Python **3.13 or later**, crypt-based hashes may not
+work properly.
+
+------------------------------------------------------------------------
+
+## 📦 Requirements
+
+Install required dependencies:
+
+``` bash
+pip install pycryptodome
+pip install bcrypt
+```
+
+If you encounter permission or environment errors:
+
+``` bash
+pip install pycryptodome --break-system-packages
+pip install bcrypt --break-system-packages
+```
+
+------------------------------------------------------------------------
+
+## 🧠 Features
+
+-   Fast wordlist-based hash cracking
+-   Supports salted and unsalted hashes
+-   Supports HMAC authentication hashes
+-   Supports Windows NTLM hashes
+-   Supports SSH private key passphrase cracking
+-   Uses Python secure cryptographic libraries
+-   Simple and user-friendly CLI interface
+-   Optional colored output
+
+------------------------------------------------------------------------
+
+## 🔑 Supported Hash Algorithms
+
+### Standard Hashes
+
+-   MD4
+-   MD5
+-   SHA1
+-   SHA224
+-   SHA256
+-   SHA384
+-   SHA512
+-   SHA3-224
+-   SHA3-256
+-   SHA3-384
+-   SHA3-512
+-   BLAKE2b
+-   BLAKE2s
+
+------------------------------------------------------------------------
+
+### 🧂 Salted Hash Support
+
+-   MD5-CRYPT
+-   SHA1-CRYPT
+-   SHA256-CRYPT
+-   SHA512-CRYPT
+-   bcrypt (2y)
+-   yescrypt (v1.1.0)
+
+------------------------------------------------------------------------
+
+### 🪟 Windows Hash Support
+
+-   NTLM (MD4 UTF-16LE)
+
+------------------------------------------------------------------------
+
+### 🔐 HMAC Support
+
+-   HMAC-MD5
+-   HMAC-SHA1
+-   HMAC-SHA224
+-   HMAC-SHA256
+-   HMAC-SHA384
+-   HMAC-SHA512
+-   HMAC-SHA3 (All variants)
+-   HMAC-BLAKE2b
+-   HMAC-BLAKE2s
+
+------------------------------------------------------------------------
+
+### 🔑 SSH Private Key Support
+
+PlainHash can attempt to crack passphrases protecting encrypted SSH
+private keys such as:
+
+-   OpenSSH private keys
+-   RSA private keys
+-   Encrypted SSH key files
+
+This feature allows PlainHash to act similarly to:
+
+    ssh2john + john
+
+But inside a single tool.
+
+------------------------------------------------------------------------
+
+## 🚀 Installation
+
+``` bash
+git clone https://github.com/jac11/PlainHash
+cd PlainHash
+chmod +x PlainHash.py
+```
+
+------------------------------------------------------------------------
+
+## 📖 Usage
+
+### Display Help Menu
+
+``` bash
+./PlainHash.py -h
+```
+
+------------------------------------------------------------------------
+
+### Crack Single Hash
+
+``` bash
+./PlainHash.py -H <hash> -w <wordlist>
+```
+
+Example:
+
+``` bash
+./PlainHash.py -H dfd5f9139a820075df69d7895015360b76d0360f3d4b77a845689614 -w wordlist.txt
+```
+
+------------------------------------------------------------------------
+
+### Crack Hashes From File
+
+``` bash
+./PlainHash.py -r hash.txt -w wordlist.txt
+```
+
+------------------------------------------------------------------------
+
+### Crack SSH Private Key Passphrase
+
+``` bash
+./PlainHash.py -S id_rsa -w wordlist.txt
+```
+
+------------------------------------------------------------------------
+
+### Disable Colored Output
+
+``` bash
+./PlainHash.py -c off
+```
+
+Example:
+
+``` bash
+./PlainHash.py -H <hash> -w wordlist.txt -c off
+```
+
+------------------------------------------------------------------------
+
+### Show Detailed Tool Information
+
+``` bash
+./PlainHash.py -i info
+```
+
+------------------------------------------------------------------------
+
+## 📊 How PlainHash Works
+
+1.  Loads target hash or encrypted SSH key
+2.  Reads passwords from wordlist
+3.  Generates hash for each password
+4.  Compares generated hash with target
+5.  Displays result when match is found
+
+------------------------------------------------------------------------
+
+## 🧩 Technical Details
+
+PlainHash uses:
+
+-   `hashlib` → Secure hashing
+-   `hmac` → Authentication hash support
+-   `bcrypt` → bcrypt cracking
+-   `pycryptodome` → MD4 + advanced crypto
+-   `crypt` → Unix salted hashes (Python \< 3.13)
+
+------------------------------------------------------------------------
+
+## ⚡ Performance Note
+
+Cracking speed depends on:
+
+-   Wordlist size
+-   Hash algorithm complexity
+-   CPU performance
+
+------------------------------------------------------------------------
+
+## 🧑‍💻 Author
+
+Developed by:
+
+**jac11**\
+Ethical Hacker \| Security Researcher \| Developer
+
+GitHub:
+
+    https://github.com/jac11
+
+------------------------------------------------------------------------
+
+## 📬 Contact
+
+    administrator@jacstory.tech
+
+------------------------------------------------------------------------
+
+## ⭐ Contribution & Support
+
+If you like this project:
+
+-   Star the repository ⭐
+-   Report bugs
+-   Suggest new features
+-   Submit pull requests
