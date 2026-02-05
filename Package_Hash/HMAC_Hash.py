@@ -50,16 +50,21 @@ class HMAC_HASH :
      def input_hash(self):
             if self.args.read:               
                 try:
-                   self.path= os.path.abspath(self.args.read)
-                   self.list= open(self.path)             
-                   self.line_read =self.list.readline().rstrip()
-                   self.input_value = self.line_read.strip()
-                   self.hash_type = str(re.findall('\'S+[:^]',  self.input_value)).replace("[",'').replace("]",'').replace("'",'').rstrip()
-                   self.re_Hash_Key  = str(re.findall('[:^]\'S+',  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace(':','')
-                   self.re_HasH = str(re.findall('\'S+[:^]' ,  self.input_value)).replace("[",'').replace("]",'').replace("'",'').replace(':','') 
-                   self.input_value = self.input_value.replace(':','').replace(self.re_Hash_Key,'')
-                   self.HMAC_hash()
-                   
+                    self.path= os.path.abspath(self.args.read)
+                    self.list= open(self.path)             
+                    self.line_read =self.list.readline().rstrip()
+                    self.input_value = self.line_read.strip()
+                    hash_type_match = re.search(r'(\S+)[:^]', self.input_value)
+                    if hash_type_match:
+                        self.hash_type = hash_type_match.group(1)
+                    hash_key_match = re.search(r'[:^](\S+)', self.input_value)
+                    if hash_key_match:
+                        self.re_Hash_Key = hash_key_match.group(1)
+                    hash_value_match = re.search(r'^([^:^]+)', self.input_value)
+                    if hash_value_match:
+                        self.re_HasH = hash_value_match.group(1)
+                    self.input_value = self.input_value.replace(':', '').replace(self.re_Hash_Key, '')
+                    self.HMAC_hash()
                 except FileNotFoundError :
                     print(Y+'[*] Hash File','{}'.format(self.path),W+B+' Not Found'+W) 
                     exit()  
@@ -318,8 +323,8 @@ class HMAC_HASH :
                                   fix_time = time.gmtime(sec)
                                   result = time.strftime("%H:%M:%S",fix_time)
                                   if hash_password == self.input_value :
-                                     print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password2[:32])\
-                                     ;print('                       : ',hash_password2[32:]+W)  
+                                     print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password[:32])\
+                                     ;print('                       : ',hash_password[32:]+W)  
                                      print(B+'[*] '+W+B+'Hash ID            :'+W+R+'  HMAC-SHA256 '+W) 
                                      print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                      print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W) 
@@ -327,8 +332,8 @@ class HMAC_HASH :
                                      print('         ',B+('='*25)+W)
                                      exit()                           
                                   elif hash_password1 ==self.input_value :
-                                       print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password2[0:32])\
-                                       ;print('                       : ',hash_password2[32:]+W)  
+                                       print(B+'[*] '+W+B+'Same Hash Match    : ',hash_password1[0:32])\
+                                       ;print('                       : ',hash_password1[32:]+W)  
                                        print(B+'[*] '+W+B+'Hash ID            :'+W+R+'  HMAC-SHA3_256 '+W) 
                                        print(B+'[*] '+W+R+'Password Found     : '+W,P+secrit+W) 
                                        print(B+'[*] '+W+B+'Password Count     : '+W,P+str(count)+W) 
