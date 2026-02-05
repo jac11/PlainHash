@@ -32,6 +32,7 @@ Install required dependencies:
 ``` bash
 pip install pycryptodome
 pip install bcrypt
+pip install paramiko
 ```
 
 If you encounter permission or environment errors:
@@ -39,6 +40,7 @@ If you encounter permission or environment errors:
 ``` bash
 pip install pycryptodome --break-system-packages
 pip install bcrypt --break-system-packages
+pip install paramiko --break-system-packages
 ```
 
 ------------------------------------------------------------------------
