@@ -14,12 +14,28 @@ G='\033[0;32m'
 O='\33[37m'     
 B='\033[34m'    
 P='\033[35m'   
-Y='\033[1;33m' 
+Y='\033[1;33m'
+            
 
 class SSHCRACK:
         def __init__(self):
+            global W
+            global R
+            global G
+            global O
+            global B
+            global P
+            global Y   
             self.start = timeit.default_timer()
             self.control()
+            if self.args.color:
+                W=''     
+                R=''    
+                G=''  
+                O=''     
+                B=''    
+                P=''   
+                Y=''  
             self.crack_ssh_key(key_path=self.args.sshkey,wordlist=self.args.wordlist)
         def generate_fake_key(self):
             lines1 = []
@@ -187,7 +203,6 @@ class SSHCRACK:
                     
                     try:
                         key = paramiko.RSAKey.from_private_key_file(key_path, password=password)
-
                         found = True
                         elapsed = (datetime.now() - start_time).seconds
                         
@@ -198,7 +213,10 @@ class SSHCRACK:
                         time.sleep(.20)
                         print(f"{B}[+]{Y} Time elapsed      :{O} {elapsed} seconds")
                         time.sleep(.20)
-                        print(f"{B}[+]{Y} Rate              :{O} {i/elapsed:.1f} attempts/second")
+                        try:
+                           print(f"{B}[+]{Y} Rate              :{O} {i/elapsed:.1f} attempts/second")
+                        except ZeroDivisionError:
+                           print(f"{B}[+]{Y} Rate              :{O} {4/4} attempts/second")   
                         time.sleep(.20)
                         print(f"{B}[+]{Y} Key type          :{O} {key_info['type']}")
                         time.sleep(.20)
@@ -251,7 +269,9 @@ class SSHCRACK:
             parser = argparse.ArgumentParser(description="Usage: [OPtion] [arguments] [ -w ] [arguments]")      
             parser.add_argument("-w","--wordlist"  , action=None           ,help ="wordlist of passwords")   
             parser.add_argument("-c","--color"     , action='store_true'   ,help ="set color display off")     
-            parser.add_argument("-S","--sshkey"     , action=None   ,help ="set color display off")   
+            parser.add_argument("-S", "--sshkey", action=None,
+                    help="Crack passphrases for encrypted SSH private keys (OpenSSH, RSA, etc.)")
+  
             self.args = parser.parse_args()  
             print(W+"")
             if len(sys.argv)!=1 :
