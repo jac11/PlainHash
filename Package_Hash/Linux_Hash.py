@@ -45,11 +45,20 @@ class Linux_Hash:
         def input_hash(self):
             if self.args.read:
                 try:
-                   self.path= os.path.abspath(self.args.read)
-                   self.list= open(self.path)             
-                   self.line_read =self.list.readline().rstrip() 
-                   self.input_value = self.line_read.strip()
-                   self.Hash_Linux()
+                    self.path= os.path.abspath(self.args.read)
+                    self.list= open(self.path)             
+                    self.line_read =self.list.readline().rstrip()
+                    self.input_value = self.line_read.strip()
+                    if self.input_value.startswith("$"):
+                        self.input_value = self.input_value.split(":")[0]
+                    elif ":" in self.input_value:
+                        self.input_value = self.input_value.split(":")[1]
+                    else:
+                        exit(f'{Y}[*] Error :{R} Hash input is wrong{W}\n'
+                        f'{Y}[*] fix   :{R} Has to be same < &hash id& >:<hash>:<account info>'
+                        )
+
+                    self.Hash_Linux()
                 except FileNotFoundError:
                     print('[*] Hash File','{}'.format(self.path),' Not Found') 
                     exit()  
