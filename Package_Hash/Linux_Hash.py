@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
-
-import crypt
+try:
+  import crypt
+except ModuleNotFoundError :
+    import legacycrypt as crypt
 import bcrypt
 import timeit,time
 import argparse
